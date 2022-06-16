@@ -1,0 +1,289 @@
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.App {
+  margin: 3%;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.header {
+  margin: 4% 2%;
+  text-align: center;
+}
+
+.bgvi {
+  background-color:rgb(97, 50, 205);
+  color: aliceblue;
+}
+
+.even {
+  background-color: yellowgreen;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.signin {
+  background-color: #d3d3d3;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+
+.login {
+  position: relative;
+  height:600px;
+  width: 600px;
+  margin: auto;
+  padding: 60px 60px;
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxkzP5mgHDc3BlcERVU0bWSNPWcQERw8_nbw&usqp=CAU) no-repeat   center center #505050;   background-size: cover;
+  box-shadow: 0px 30px 60px -5px #000;
+}
+
+
+
+.active {
+  border-bottom: 2px solid #1161ed;
+  color: #fff;
+  position: center;
+
+}
+
+
+.for {
+  padding-top: 80px;
+}
+
+.text {
+  border: none;
+  width: 89%;
+  padding: 10px 20px;
+  display: block;
+  height: 15px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0);
+  overflow: hidden;
+  margin-top: 15px;
+  transition: all 0.5s ease-in-out;
+}
+
+.text:focus {
+  outline: 0;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0);
+}
+
+.text:focus + span {
+  opacity: 0.6;
+}
+
+.inp[type="text"],
+.inp[type="password"] {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  
+}
+
+
+.loginn {
+  text-transform: uppercase;
+  font-size: 16px;
+  opacity: 0.4; 
+  display: inline-block;
+  position: relative;
+  top: -65px;
+  transition: all 0.5s ease-in-out;
+  color: antiquewhite;
+}
+
+
+
+.input {
+  display: inline-block;
+  padding-top: 20px;
+  font-size: 14px;
+}
+
+.signin {
+  background-color: #1161ed;
+  color: #FFF;
+  width: 100%;
+  padding: 10px 20px;
+  display: block;
+  height: 39px;
+  border-radius: 20px;
+  margin-top: 30px;
+  transition: all 0.5s ease-in-out;
+  border: none;
+  text-transform: uppercase;
+}
+.signin:hover {
+  background: #4082f5;
+  box-shadow: 0px 4px 35px -5px #4082f5;
+  cursor: pointer;
+}
+.signin:focus {
+  outline: none;
+}
+
+
+.loginnn {
+  text-align: center;
+  display: block;
+  top: 120px;
+  position: relative;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+
+
+.buttonAj {
+
+    display: inline-block;
+    padding: 10px 40px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: green;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    
+  }
+  
+  .buttonAj:hover {background-color: #3e8e41}
+  
+  .buttonAj:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+
+
+  .buttonQi {
+
+    display: inline-block;
+    padding: 10px 40px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: red;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    
+  }
+  
+  .buttonQi:hover {background-color: #ca2b2b}
+  
+  .buttonQi:active {
+    background-color: #ca2b2b;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  .formRegister{
+    height:300px;
+    width:600px;
+    padding: 10px 20px;
+    margin: auto;
+
+
+  }
