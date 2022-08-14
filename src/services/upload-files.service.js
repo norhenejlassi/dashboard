@@ -1,4 +1,6 @@
 import http from "../http-common";
+import axios from 'axios';
+const API_URL = 'http://localhost:8006/api/test/';
 
 class UploadFilesService {
   upload(file, onUploadProgress) {
@@ -13,6 +15,12 @@ class UploadFilesService {
       onUploadProgress,
     });
   }
+
+  
+deleteFile(fileId){
+  return axios.delete(API_URL + 'employees/' + fileId);
+}
+
 
   getFiles() {
     return http.get("/files");

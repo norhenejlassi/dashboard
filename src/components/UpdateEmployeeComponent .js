@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import UserService from '../services/user.service'
 
+
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 class UpdateEmployeeComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             id: this.props.match.params.id,
-           username: '',
+            username: '',
             email: '',
-           dep: ''
+            dep: ''
         }
         this.changeUsernameHandler = this.changeUsernameHandler.bind(this);
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changeDepHandler = this.changeDepHandler.bind(this);
-
         this.updateEmployee = this.updateEmployee.bind(this);
     }
 
@@ -37,7 +39,7 @@ class UpdateEmployeeComponent extends Component {
             this.props.history.push('/employees');
         });
     }
-    
+
     changeUsernameHandler= (event) => {
         this.setState({username: event.target.value});
     }
@@ -56,39 +58,51 @@ class UpdateEmployeeComponent extends Component {
 
     render() {
         return (
+            
             <div>
-                <br></br>
-                   <div className = "container">
-                        <div className = "row">
-                            <div className = "card col-md-6 offset-md-3 offset-md-3">
-                                <h3 className="text-center">Modifier Employee</h3>
-                                <div className = "card-body">
+                <Navbar/>
+                <div class="container-fluid" id="main">
+                 <div class="row row-offcanvas row-offcanvas-left">
+                   <Sidebar/>
+                   <div class="col main pt-5 mt-3">
+       <div class="container ">
+          <div class="row ">
+
+
+        <div class="formRegister ">
+
+        <div  style={{color:"blue"}}><h2><b>Modifier employer</b></h2></div>
+
                                     <form>
                                         <div className = "form-group">
                                             <label> Nom: </label>
-                                            <input placeholder="First Name" name="firstName" className="form-control" 
+                                            <input placeholder="nom" name="username" className="form-control" 
                                                 value={this.state.username} onChange={this.changeUsernameHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label> Email: </label>
-                                            <input placeholder="Last Name" name="lastName" className="form-control" 
+                                            <input placeholder="Email" name="lemail" className="form-control" 
                                                 value={this.state.email} onChange={this.changeEmailHandler}/>
                                         </div>
                                         <div className = "form-group">
                                             <label>Departement: </label>
-                                            <input placeholder="Departement" name="emailId" className="form-control" 
+                                            <input placeholder="Departement" name="dep" className="form-control" 
                                                 value={this.state.dep} onChange={this.changeDepHandler}/>
                                         </div>
-
-                                        <button className="btn btn-success" onClick={this.updateEmployee}>Save</button>
-                                        <button clsasName="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                        <button  class="buttonAj" onClick={this.updateEmployee}>Save</button>
+                                        <button class="buttonQi" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
+                                    </div>
 
-                   </div>
-            </div>
+</div>
+</div>
+
+</div>
+          </div>
+
+          </div>
+ 
+          </div>
         )
     }
 }

@@ -31,9 +31,12 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="container">
-        <header className="jumbotron">
-          <h3>{this.state.content}</h3>
+<div class="login" style={{width: "800px",height: "600px"}}>
+        <header className="jumbotron" style={{marginTop: "65px"}}>
+        <h1>réinitialiser le mot de passe</h1>
+          <h3>le lien a été envoyé à votre courrier</h3>
+          
+
         </header>
       </div>
     );

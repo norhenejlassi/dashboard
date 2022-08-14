@@ -25,7 +25,7 @@ const Dashboard = () => {
    
 
     return (
-<div>
+<div>  
                 <Navbar/>
                 <div class="container-fluid" id="main">
                  <div class="row row-offcanvas row-offcanvas-left">
@@ -157,6 +157,10 @@ const Dashboard = () => {
                  <div className="mb-5" style={{height:"300px",width:"400px"}}><PieChart/> </div></div>
         </div>
       
+
+
+
+
         <a id="more"></a>
         <hr/>
         <h2 class="sub-header mt-5">Use card decks for equal height rows of cards</h2>

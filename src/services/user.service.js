@@ -22,6 +22,9 @@ class UserService {
   getEmployees(){
     return axios.get(API_URL+'employees');
 }
+getRoles(){
+  return axios.get(API_URL+'roles');
+}
 
 createEmployee(employee){
     return axios.post(API_URL, employee);
@@ -40,6 +43,9 @@ deleteEmployee(employeeId){
 }
   
 
+searchEmployee(){
+  return axios.post(API_URL + 'search' );
+}
 
 }
 

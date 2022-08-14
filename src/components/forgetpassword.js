@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
+import {withRouter} from "react-router-dom"
 import AuthService from "../services/auth.service";
 
 const required = value => {
@@ -15,32 +15,29 @@ const required = value => {
   }
 };
 
-export default class Login extends Component {
+class forgot extends Component {
   constructor(props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+   
 
     this.state = {
-      username: "",
-      password: "",
+      email: "",
       loading: false,
       message: ""
     };
   }
 
-  onChangeUsername(e) {
+  onChangeEmail(e) {
     this.setState({
-      username: e.target.value
+      email: e.target.value
     });
   }
 
-  onChangePassword(e) {
-    this.setState({
-      password: e.target.value
-    });
-  }
+  cancel(){
+    this.props.history.push('/');
+}
 
   handleLogin(e) {
     e.preventDefault();
@@ -53,9 +50,9 @@ export default class Login extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      AuthService.login(this.state.username, this.state.password).then(
+      AuthService.forgotpass(this.state.email).then(
         () => {
-          this.props.history.push("/profile");
+          this.props.history.push("/home");
           window.location.reload();
         },
         error => {
@@ -84,7 +81,7 @@ export default class Login extends Component {
      
 <div class="login">
 
-  <h2 class="active">Connexion </h2>
+  <h2 class="active">Changer votre mot de passe </h2>
 
 
 
@@ -105,34 +102,19 @@ export default class Login extends Component {
                class="inp"
                 type="text"
                 className="form-control text" 
-                name="username"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
+                name="email"
+                value={this.state.email}
+                onChange={this.onChangeEmail}
                 validations={[required]}
               />
                
                   
-           <span class="loginn">Nom utilisateur</span>
+           <span class="loginn">Email</span>
 
 
 
            <br/>
-           <br/>
-              <Input
-                class="inp"
-                type="password"
-                className="form-control text"
-                name="password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                validations={[required]}
-              />
-        
-  
-
-                  <span class="loginn">Mot de passe</span>
-       
-<br/>
+          
    <br/>
                     
               <button
@@ -142,9 +124,10 @@ export default class Login extends Component {
                 {this.state.loading && (
                   <span className="spinner-border spinner-border-sm" ></span>
                 )}
-                Connexion
+                Envoyer
               </button>
-           
+              <button onClick={this.cancel.bind(this)}  className="signin" >Cancel</button>
+
 
             {this.state.message && (
               <div className="form-group">
@@ -161,7 +144,6 @@ export default class Login extends Component {
                 this.checkBtn = c;
               }}
             />
-<a href="/forgotpassword" class="loginnn"  ><span class="loginn">mot de passe oublier?</span></a>
 
           </Form>
         </div>
@@ -170,7 +152,7 @@ export default class Login extends Component {
   }
 }
 
-
+export default withRouter(forgot);
 
 
    

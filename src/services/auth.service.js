@@ -27,7 +27,7 @@ class AuthService {
       username,
       email,
       password,
-    dep
+      dep
      
     });
   }
@@ -35,7 +35,13 @@ class AuthService {
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));;
   }
+  forgotpass(email){
+    return axios.post(API_URL +"forgot_password",{email});
+  }
 
+  resetpassword(password,token){
+    return axios.post(API_URL +"reset_password/"+token,{password});
+  }
  
 }
 

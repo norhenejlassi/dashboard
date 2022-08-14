@@ -23,10 +23,20 @@ class List extends Component{
         this.editEmployee = this.editEmployee.bind(this);
         this.deleteEmployee = this.deleteEmployee.bind(this);
         this.updateEmployee = this.updateEmployee.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.searchEmployee = this.searchEmployee.bind(this);
+
+
+        
 
     }
 
-    
+    onChangeUsername(e) {
+        this.setState({
+          username: e.target.value
+        });
+      }
+
     deleteEmployee(id){
         UserService.deleteEmployee(id).then( res => {
             this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
@@ -52,6 +62,12 @@ class List extends Component{
     addEmployee(){
         this.props.history.push('/register');
     }
+
+    searchEmployee(){
+        UserService.searchEmployee().then((res) => {
+            this.setState({ employees: res.data});
+        });
+    }
     render() {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
@@ -72,8 +88,10 @@ class List extends Component{
            <div class="col-sm-3 mt-5 mb-4 text-gred">
               <div className="search">
                 <form class="form-inline">
-                 <input class="form-control mr-sm-2" type="search" placeholder="Search Student" aria-label="Search"/>
-               
+                <div className="form-group">
+                 <input  value={this.state.username} onChange={this.onChangeUsername}  class="form-control mr-sm-2" type="search" placeholder="Search Student" aria-label="Search"/>
+                 <button type="button"  class="btn btn-success" onClick={this.searchEmployee} style={{marginLeft: "-20px"}}>Search</button>
+   </div>
                 </form>
               </div>    
               </div>  
@@ -92,7 +110,7 @@ class List extends Component{
                         <th>nom employer</th>
                        <th> Email</th>
                       <th> Departement  </th>
-                            <th>Actions</th>
+                     <th>Actions</th>
                         </tr>
                     </thead>
                 
@@ -103,6 +121,8 @@ class List extends Component{
                                         <tr key = {employee.id}>
                                             <td> { employee.username} </td>   
                                              <td> {employee.email}</td>
+                                          
+                                      
                                              <td> {employee.dep}</td>
                                             
 
