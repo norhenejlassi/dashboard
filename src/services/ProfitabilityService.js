@@ -10,13 +10,17 @@ class ProfitabilityService {
  }
     
   getProfit(){
-    return axios.get(API_URL+'profi');
+    return axios.get(API_URL+'liste');
 }
 
 
+getAll(params) {
+   return http.get("profi", { params });
+ }
 
-
-
+ exportcsv(){
+   return axios.get(API_URL+'calculs/export');
+}
 
   
 }

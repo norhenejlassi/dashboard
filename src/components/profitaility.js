@@ -3,7 +3,10 @@ import ProfitabilityService from "../services/ProfitabilityService";
 import { Button,Modal,Input } from 'react-bootstrap';
 import {withRouter} from "react-router-dom";
 import Navbar from './Navbar';
-import Sidebar from './Sidebar'
+import Sidebar from './Sidebar';
+import Pagination from './pagination'
+
+
  class Profitability extends Component {
     constructor(props) {
       super(props);
@@ -35,6 +38,7 @@ import Sidebar from './Sidebar'
   });
 
   }
+
   
 
     render() {
@@ -83,66 +87,13 @@ import Sidebar from './Sidebar'
             Calcul
           </button>
 
+         
+
 
           <div className="alert alert-light" role="alert">
             {message}
           </div>
   
-        
-
-
-          <div class="row">
-                <div class="table-responsive " >
-          <table class="table table-striped table-hover table-bordered">
-                    <thead>
-                        <tr>
-                        <th>Id</th>
-                       <th> Expense Value</th>
-                       <th> Key</th>
-                      <th> Key Value </th>   
-                      <th> Region  </th>
-                      <th> Periode  </th>
-                      <th> Resultat </th>
-                        </tr>
-                    </thead>
-                
-                    <tbody>
-          
-                                {
-                                    this.state.fileInfos.map(
-                                        expe => 
-                                        <tr >
-                                            <td >{expe.id}</td>
-
-                                            <td> { expe.expense_value} </td>   
-                                            <td> {expe.key}</td>
-
-                                            <td> {expe.expense_value}</td>
-                                            <td> {expe.region}</td>
-                                            <td> {expe.periode}</td>
-                                            <td> {expe.result}</td>
-
-                                         
-                                          </tr>
-                                    )
-                               }
-                            </tbody>
-
-                </table>      
-            
-          </div>
-
-
-
-
- </div>
-
-
-
-  
-
-
-
 
 
 

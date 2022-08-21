@@ -26,9 +26,9 @@ const Sidebar = () => {
                        <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="importcle"> <i class="fas fa-tablet-alt font-weight-bold"></i> Key </a></li>
                     </ul>
                 </li>
-                <li class="nav-item mb-2"><a class="nav-link text-secondary" href="/profitability"><i class="fas fa-calculator"></i> <span className="ml-3">Profitability</span></a></li>
+                <li class="nav-item mb-2"><a class="nav-link text-secondary" href="/pagination"><i class="fas fa-calculator"></i> <span className="ml-3">Profitability</span></a></li>
 
-                <li class="nav-item mb-2"><a class="nav-link text-secondary" href="#"><i class="fas fa-file-export font-weight-bold"></i><span className="ml-3">Export</span></a></li>
+                <li class="nav-item mb-2"><a class="nav-link text-secondary" href="/Async"><i class="fas fa-file-export font-weight-bold"></i><span className="ml-3">Export</span></a></li>
                 <li class="nav-item mb-2"><a class="nav-link text-secondary" href="/UploadFiles"><i class="far fa-folder font-weight-bold"></i> <span className="ml-3">Document</span></a></li>
 
                

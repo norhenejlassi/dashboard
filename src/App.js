@@ -3,7 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AuthService from "./services/auth.service";
+import Async  from "./components/Async ";
 
+import pagination from "./components/pagination";
 
 import Login from "./components/login.component";
 import Register from "./components/register.component";
@@ -14,7 +16,6 @@ import BoardModerator from "./components/board-moderator.component";
 import List from "./components/List";
 import Profitability from "./components/profitaility";
 
-import S from "./components/s";
 
 import Dashboard from "./components/Dashboard";
 
@@ -24,6 +25,7 @@ import ViewEmployeeComponent from "./components/ViewEmployeeComponent";
 import UploadFiles from "./components/uploadfilescomponent";
 import Import from "./components/import";
 import Importcle from "./components/importcle";
+
 
 
 import forgot from "./components/forgetpassword";
@@ -86,6 +88,8 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
+          <Route exact path={"/Async"} component={Async } />
+
             <Route exact path={"/home"} component={Home} />
             <Route exact path="/" component={Login} />
             <Route exact path="/register" component={Register} />
@@ -98,7 +102,8 @@ class App extends Component {
             <Route path = "/employees" component = {List}></Route>
             <Route path = "/profitability" component = {profitaility}></Route>
 
-            
+            <Route path = "/pagination" component = {pagination}></Route>
+
             <Route path = "/Dashboard" component = {Dashboard}></Route>
 
             <Route path = "/UploadFiles" component = {UploadFiles}></Route>
@@ -107,11 +112,12 @@ class App extends Component {
 
 
 
-            <Route path = "/s" component = {S}></Route>
 
             <Route path = "/add-employee/:id" component = {CreateEmployeeComponent}></Route>
             <Route path = "/view-employee/:id" component = {ViewEmployeeComponent}></Route>
             <Route path = "/upd-employee/:id" component = { UpdateEmployeeComponent }></Route>
+       
+            
 
             <Route path = "/UploadFiles/:id" component = { UploadFiles }></Route>
           </Switch>
