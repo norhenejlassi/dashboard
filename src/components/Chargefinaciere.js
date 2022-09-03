@@ -1,0 +1,282 @@
+import React, { Component } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import GestionkeyService from "../services/GestionkeyService";
+
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+
+
+
+const required = value => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
+
+
+export default class ChargeFinancier extends Component {
+  constructor(props) {
+    super(props);
+    this.handleAjout = this.handleAjout.bind(this);
+ 
+    this.onChangeChargefinanciere = this.onChangeChargefinanciere.bind(this);
+    this.onChangePeriode = this.onChangePeriode.bind(this);
+    this.deleteCharge = this.deleteCharge.bind(this);
+    this.updateCharge = this.updateCharge.bind(this);
+   
+    
+       
+
+    
+
+    this.state = {
+      charges: [],
+     id: "",
+     periode: "",
+     chargeFinanciere: "",
+      successful: false,
+      message: ""
+    };
+  }
+
+
+
+
+
+
+
+  componentDidMount(){
+    GestionkeyService.getChargeFinancier().then((res) => {
+        this.setState({ charges: res.data});
+    });
+}
+updateCharge(id){
+  this.props.history.push(`/upd-charge/${id}`);
+}
+
+deleteCharge(id){
+  GestionkeyService.deleteCharge(id).then( res => {
+      this.setState({charges: this.state.charges.filter(charge=> charge.id !== id)});
+  });
+}
+
+  onChangePeriode(e) {
+    this.setState({
+      periode: e.target.value
+    });
+  }
+
+  onChangeChargefinanciere(e) {
+    this.setState({
+      chargeFinanciere: e.target.value
+    });
+  }
+
+  handleAjout(e) {
+    e.preventDefault();
+
+    this.setState({
+      message: "",
+      successful: false
+    });
+
+    this.form.validateAll();
+
+    if (this.checkBtn.context._errors.length === 0) {
+      GestionkeyService.ajout(
+      
+        this.state.periode,
+        this.state.chargeFinanciere
+  
+      ).then(
+        response => {
+          this.setState({
+            message: response.data.message,
+            successful: true
+          });
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          this.setState({
+            successful: false,
+            message: resMessage
+          });
+        }
+      );
+      window.location.reload(false)
+    }
+  }
+
+  render() {
+    return (
+ 
+      <div>
+
+                    <Navbar/>
+                <div class="container-fluid" id="main">
+                 <div class="row row-offcanvas row-offcanvas-left">
+                   <Sidebar/>
+
+                   <div class="col main pt-5 mt-3">
+
+     
+
+          <div class="row ">
+
+
+        <div class="formRegister ">
+
+        <div  style={{color:"blue"}}><h2><b>Ajouter une charge financiére nette</b></h2></div>
+      
+
+          <Form
+            onSubmit={this.handleAjout}
+            ref={c => {
+              this.form = c;
+            }}
+          >
+            {!this.state.successful && (
+              <div>
+
+                
+            
+
+                <div className="form-group">
+                  <label htmlFor="periode"><h6>periode</h6></label>
+                  <Input
+                    type="text"
+                 
+                    name="key"
+                    value={this.state.periode}
+                    onChange={this.onChangePeriode}
+                    validations={[required]}
+
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="chargeFinanciere"><h6>Charge Finaciere</h6></label>
+                  <Input
+                    type="text"
+                  
+                    name="key"
+                    value={this.state.chargeFinanciere}
+                    onChange={this.onChangeChargefinanciere}
+                    validations={[required]}
+
+                  />
+                </div>
+           
+
+                <div className="form-group">
+                  <button variant="secondary" class="buttonAj" >Ajouter</button>
+
+                </div>
+              </div>
+            )}
+
+            {this.state.message && (
+              <div className="form-group">
+     
+
+     
+                <div
+                  className={
+                    this.state.successful
+                      ? "alert alert-success"
+                      : "alert alert-danger"
+                  }
+                  role="alert"
+                >
+                  {this.state.message}
+                  
+                  
+                </div>
+              </div>
+            )}
+            <CheckButton
+              style={{ display: "none" }}
+              ref={c => {
+                this.checkBtn = c;
+                
+              }}
+            />
+          </Form>
+
+
+</div>
+<br></br><br></br>
+
+
+<div  class="formRegister ">
+<div class="row">
+                <div class="table-responsive " >
+                 <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                        <th>Charge Finaciere</th>
+                       <th> periode</th>
+                      
+                     <th>Actions</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                                {
+                                    this.state.charges.map(
+                                      charge => 
+                                        <tr key = {charge.id}>
+                                            <td> { charge.chargeFinanciere} </td>   
+                                             <td> {charge.periode}</td>
+                                          
+                                      
+                                         
+                                            
+
+                                             <td>
+                                <a href="#" class="edit" title="Edit" data-toggle="tooltip" style={{color:"#D71DB2"}}  onClick={ () => this.updateCharge(charge.id)} ><i class="material-icons">&#xE254;</i></a>
+                                <a href="#" class="delete" title="Delete" data-toggle="tooltip" style={{color:"red"}}  onClick={ () => this.deleteCharge(charge.id)}  ><i class="material-icons">&#xE872;</i></a>
+                                          
+                                </td>   </tr>
+                                    )
+                                }
+                            </tbody>
+
+                   
+                </table>
+            </div>   
+        </div>
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+          </div>
+
+          </div>
+  </div>
+  </div>
+    );
+  }
+}

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+import http from "../http-common";
 
 const API_URL = 'http://localhost:8006/api/test/';
 
@@ -22,6 +23,7 @@ class UserService {
   getEmployees(){
     return axios.get(API_URL+'employees');
 }
+
 getRoles(){
   return axios.get(API_URL+'roles');
 }
@@ -45,6 +47,9 @@ deleteEmployee(employeeId){
 
 searchEmployee(){
   return axios.post(API_URL + 'search' );
+}
+getAll(params) {
+  return http.get("pagiuser", { params });
 }
 
 }

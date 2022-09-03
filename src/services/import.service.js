@@ -19,6 +19,10 @@ class ImportService {
   getExpenses(){
     return axios.get(API_URL+'expenses');
 }
+getAllExpense(params) {
+  return http.get("pagiexpense", { params });
+}
+
 
 uploadcle(file, onUploadProgress) {
   let formData = new FormData();
@@ -32,12 +36,42 @@ uploadcle(file, onUploadProgress) {
     onUploadProgress,
   });
 }
+uploadchargexp(file, onUploadProgress) {
+  let formData = new FormData();
+
+  formData.append("file", file);
+
+  return http.post("/importcharge", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    onUploadProgress,
+  });
+}
+
+uploadReve(file, onUploadProgress) {
+  let formData = new FormData();
+
+  formData.append("file", file);
+
+  return http.post("/importrevenu", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    onUploadProgress,
+  });
+}
 
 getCles(){
   return axios.get(API_URL+'cles');
 }
 
-
+getRevenue(){
+  return axios.get(API_URL+'revenues');
+}
+getChargexp(){
+  return axios.get(API_URL+'chargexps');
+}
   
 }
 

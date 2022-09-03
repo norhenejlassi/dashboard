@@ -6,6 +6,7 @@ import AuthService from "./services/auth.service";
 import Async  from "./components/Async ";
 
 import pagination from "./components/pagination";
+import ProtectedRoute from './components/ProtectedRouter';
 
 import Login from "./components/login.component";
 import Register from "./components/register.component";
@@ -14,18 +15,26 @@ import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import BoardModerator from "./components/board-moderator.component";
 import List from "./components/List";
+
+import Cle from "./components/Cle";
+
 import Profitability from "./components/profitaility";
 
 
+import calculreve from "./components/calculreve";
 import Dashboard from "./components/Dashboard";
 
 import UpdateEmployeeComponent  from "./components/UpdateEmployeeComponent ";
+import UpdateCle from "./components/UpdateCle";
+
 import CreateEmployeeComponent from "./components/CreateEmployeeComponent";
 import ViewEmployeeComponent from "./components/ViewEmployeeComponent";
 import UploadFiles from "./components/uploadfilescomponent";
 import Import from "./components/import";
 import Importcle from "./components/importcle";
+import Importchargexp from "./components/importchargexp";
 
+import importreve from  "./components/importreve";
 
 
 import forgot from "./components/forgetpassword";
@@ -35,6 +44,17 @@ import BoardAdmin from "./components/board-admin.component";
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
 import profitaility from "./components/profitaility";
+import Gestioncle from "./components/gestioncle";
+import Modifcle from "./components/modifcle";
+import ChargeFinancier from "./components/Chargefinaciere";
+import UpdateCharge from "./components/updateCharge";
+import Impots from "./components/Impots";
+import UpdateImpots from "./components/updateImpots";
+import CalculChargeExp from "./components/calculchargeExp";
+import Ca from "./components/ca";
+import Calculpnl from "./components/Calculpnl";
+
+
 
 class App extends Component {
   constructor(props) {
@@ -88,38 +108,64 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
+
+            
+          <Route exact path="/profile" component={Profile} />
+            <Route exact path="/forgotpassword" component={forgot} />
+            <Route exact path={"/reset_password/:token"} component={reset} />
+            
           <Route exact path={"/Async"} component={Async } />
+          
+          <Route exact path={"/ajoutcle"} component={Gestioncle} />
+          <Route exact path={"/modifcle"} component={Modifcle} />
 
             <Route exact path={"/home"} component={Home} />
             <Route exact path="/" component={Login} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/forgotpassword" component={forgot} />
-            <Route exact path={"/reset_password/:token"} component={reset} />
+
             <Route path="/user" component={BoardUser} />
             <Route path="/mod" component={BoardModerator} />
-            <Route path="/admin" component={BoardAdmin} />
-            <Route path = "/employees" component = {List}></Route>
-            <Route path = "/profitability" component = {profitaility}></Route>
+            <ProtectedRoute path="/admin" component={BoardAdmin} />
+            <ProtectedRoute path = "/employees" component = {List}/>
 
-            <Route path = "/pagination" component = {pagination}></Route>
+            <ProtectedRoute path = "/clees" component = {Cle}/>
 
-            <Route path = "/Dashboard" component = {Dashboard}></Route>
+            <ProtectedRoute path = "/profitability" component = {profitaility}/>
 
-            <Route path = "/UploadFiles" component = {UploadFiles}></Route>
-            <Route path = "/import" component = {Import}></Route>
-            <Route path = "/importcle" component = {Importcle}></Route>
+            <ProtectedRoute path = "/pagination" component = {pagination}/>
+            <ProtectedRoute path = "/calculchargexp" component = {CalculChargeExp}/>
+            <ProtectedRoute path = "/calculpnl" component = {Calculpnl}/>
+
+            <ProtectedRoute path = "/c/:id" component = {Ca}/>
 
 
 
+            <ProtectedRoute path = "/calculreve" component = {calculreve}/>
+            <ProtectedRoute path = "/Dashboard" component = {Dashboard}/>
 
-            <Route path = "/add-employee/:id" component = {CreateEmployeeComponent}></Route>
-            <Route path = "/view-employee/:id" component = {ViewEmployeeComponent}></Route>
-            <Route path = "/upd-employee/:id" component = { UpdateEmployeeComponent }></Route>
+            <ProtectedRoute path = "/UploadFiles" component = {UploadFiles}/>
+            <ProtectedRoute path = "/import" component = {Import}/>
+            <ProtectedRoute path = "/importcle" component = {Importcle}/>
+            <ProtectedRoute path = "/importreve" component = {importreve}/>
+            <ProtectedRoute path = "/importchargexpo" component = {Importchargexp}/>
+
+            <ProtectedRoute path = "/chargefinanciere" component = {ChargeFinancier}/>
+
+            <ProtectedRoute path = "/impots" component = {Impots}/>
+
+            <ProtectedRoute path = "/upd-cle/:id" component = {UpdateCle}/>
+            
+            <ProtectedRoute path = "/upd-charge/:id" component = {UpdateCharge}/>
+            <ProtectedRoute path = "/upd-impot/:id" component = {UpdateImpots}/>
+
+
+            <ProtectedRoute path = "/add-employee/:id" component = {CreateEmployeeComponent}/>
+            <ProtectedRoute path = "/view-employee/:id" component = {ViewEmployeeComponent}/>
+            <ProtectedRoute path = "/upd-employee/:id" component = { UpdateEmployeeComponent }/>
        
             
 
-            <Route path = "/UploadFiles/:id" component = { UploadFiles }></Route>
+            <ProtectedRoute path = "/UploadFiles/:id" component = { UploadFiles }/>
           </Switch>
                
         </div>

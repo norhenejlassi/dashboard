@@ -1,60 +1,92 @@
-
-
 import React, { Component } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
 import Pagination from "@material-ui/lab/pagination";
-import Profitaility from "./profitaility";
+import { Button,Modal} from 'react-bootstrap';
+import CheckButton from "react-validation/build/button";
+import { useParams } from "react-router";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Redirect ,withRouter} from "react-router-dom";
+import GestionkeyService from "../services/GestionkeyService";
+
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
-import { Button,Modal,Input } from 'react-bootstrap';
-import ProfitabilityService from "../services/ProfitabilityService";
 
-export default class Paginations extends Component {
 
+
+const required = value => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
+
+
+ class CalculPnl extends Component {
+ 
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
     this.retrieveTutorials = this.retrieveTutorials.bind(this);
+    this.calculpnl = this.calculpnl.bind(this);
+    this.onChangePeriode= this.onChangePeriode.bind(this);
+
+
 
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
-    this.calculProfi = this.calculProfi.bind(this);
+    
+
 
     this.state = {
       tutorials: [],
+      peride:"",
       currentTutorial: null,
       currentIndex: -1,
       searchTitle: "",
       page: 1,
       count: 0,
-      pageSize: 3,
+      pageSize: 5,
     };
-    this.pageSizes = [3, 6, 9];
+    this.pageSizes = [2, 5, 6];
+  
   }
   componentDidMount() {
     this.retrieveTutorials();
   }
 
-  calculProfi(){
-    ProfitabilityService.calculProfi().then((res) => {
+  
+  calculpnl(){
+    GestionkeyService.calculpnl(this.state.periode).then((res) => {
       this.setState({ fileInfos: res.data});
-      window.location.reload(false)
   });
  
-
-
   }
-
+  
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
     this.setState({
       searchTitle: searchTitle,
     });
+  
+
   }
+  onChangePeriode(e) {
+    this.setState({
+      periode: e.target.value,
+    });
+  
+  }
+
   getRequestParams(searchTitle, page, pageSize) {
     let params = {};
     if (searchTitle) {
       params["title"] = searchTitle;
     }
+    
     if (page) {
       params["page"] = page - 1;
     }
@@ -66,7 +98,7 @@ export default class Paginations extends Component {
   retrieveTutorials() {
     const { searchTitle, page, pageSize } = this.state;
     const params = this.getRequestParams(searchTitle, page, pageSize);
-    ProfitabilityService.getAll(params)
+    GestionkeyService.getAllPnl(params)
       .then((response) => {
         const { tutorials, totalPages } = response.data;
         this.setState({
@@ -78,7 +110,9 @@ export default class Paginations extends Component {
       .catch((e) => {
         console.log(e);
       });
+     
   }
+
 
   handlePageChange(event, value) {
     this.setState(
@@ -101,6 +135,46 @@ export default class Paginations extends Component {
       }
     );
   }
+
+
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState({
+      message: "",
+      successful: false,
+      loading: true,
+    });
+    
+    this.form.validateAll();
+
+    if (this.checkBtn.context._errors.length === 0) {
+      GestionkeyService.calculpnl( this.state.searchTitle).then(() => {
+        window.location.reload();
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          this.setState({
+            loading: false,
+            message: resMessage
+          });
+        }
+      );
+    } else {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+
+
   render() {
     const {
         searchTitle,
@@ -123,22 +197,18 @@ export default class Paginations extends Component {
 <div class="col main pt-5 mt-3">
 <div class="container ">
         <div className=" row">
-        
-
-
           <div className="col-md-8">
             <div className="input-group mb-3">
-
-
-              <input
+              
+            <input
                 type="text"
                
-                placeholder="Search by periode"
-                value={searchTitle}
+                placeholder="Search by Key"
+                value={this.state.searchTitle}
                 onChange={this.onChangeSearchTitle}
               />
-              <div className="input-group-append">
-                <button
+              
+               <button
                   class="btn btn-success"
                   type="button"
                   style={{marginLeft: "-20px"}}
@@ -146,45 +216,53 @@ export default class Paginations extends Component {
                 >
                   Search
                 </button>
+
+             <Form onSubmit={this.handleSubmit}
+                ref={c => {
+                  this.form = c;
+                }}>
+           <div className="input-group-append">
+             
+                 <button class="calcul"style={{marginLeft: "650px"}} onClick={this.calculpnl(this.state.periode)}>
+                Calculer
+              </button> 
+           
+              <h6 style={{marginLeft: "10px"}}>{"Totale:"}</h6>
               </div>
+              <CheckButton
+              style={{ display: "none" }}
+              ref={c => {
+                this.checkBtn = c;
+              }}
+            />
+              </Form>
 
               </div>
+             
+           </div>
 
             </div>
 
-
-
-
-
-            <div class="col-sm-3 offset-sm-1  mt-5 mb-4 text-gred">
-              <Button variant="primary"      onClick={this.calculProfi}
->
-                Calculer
-              </Button>
-             </div>
           </div>
-      
+      <br></br>   <br></br>
 
-          <h4 style={{color:"red"}}>Resultat du calculs des depences par region</h4>
+       <h2 style={{color:"red" }}>Resultat P&L par année</h2><br></br>
           <div >
            
-          
-
-
-
             <div class="row">
                 <div class="table-responsive " >
              <table class="table table-striped table-hover table-bordered">
-                    <thead>
+             <thead>
                         <tr>
-                        <th>Id</th>
-                       <th> Expense Value</th>
-                       <th> Key</th>
-                      <th> Key Value </th>   
-                      <th> Label </th>  
-                      <th> Region  </th>
-                      <th> Periode  </th>
-                      <th> Resultat </th>
+                        <th> periode</th>
+                        <th> produit Exploitation</th>
+                       <th> charge Exploitation</th>
+                       <th> charges Financiere Nette</th>
+                      <th> resultat Avant Impot  </th>
+                      <th>resultat Exercice</th> 
+                      <th>resultat Exploitation</th> 
+                      <th>total Impot</th> 
+                      <th>Rapport</th> 
                         </tr>
                     </thead>
 
@@ -203,87 +281,43 @@ export default class Paginations extends Component {
                     onClick={() => this.setActiveTutorial(tutorial, index)}
                     key={index}
                   >
-                    {tutorial.id}
-                   
-
-                    </td>
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.expense_value}
-             
-                    </td>
-
-
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.key}
-                    
-                    </td>
-
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.key_value}
-                    
-                    </td>
-
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.labelid}
-                    
-                    </td>
-
-
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.region}
-                    
-                    </td>
-
-
-                    
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
                     {tutorial.periode}
+                
+                    </td>
+             
+                    <td
+                     className={
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveTutorial(tutorial, index)}
+                    key={index}
+                   
+                  >
+                    {tutorial.produitExploitation}
                     
                     </td>
-
-
+                    <td
+                     className={
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveTutorial(tutorial, index)}
+                    key={index}
+                   
+                  >
+                    {tutorial.chargeExploitation}
+                    
+                    </td>
+                    <td
+                     className={
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveTutorial(tutorial, index)}
+                    key={index}
+                   
+                  >
+                    {tutorial.chargesFinanciereNette}
+                    
+                    </td>
 
                     <td
                      className={
@@ -293,27 +327,50 @@ export default class Paginations extends Component {
                     key={index}
                    
                   >
-                    {tutorial.result}
+                    {tutorial.resultatAvantImpot}
+                    
+                    </td>
+                  
+                    <td
+                     className={
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveTutorial(tutorial, index)}
+                    key={index}
+                   
+                  >
+                    {tutorial.  resultatExercice}
+                    
+                    </td>
+                    
+                    <td
+                     className={
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveTutorial(tutorial, index)}
+                    key={index}
+                   
+                  >
+                    {tutorial.resultatExploitation}
                     
                     </td>
 
-
-
-
-
+                    <td
+                     className={
+                      (index === currentIndex ? "active" : "")
+                    }
+                    onClick={() => this.setActiveTutorial(tutorial, index)}
+                    key={index}
+                   
+                  >
+                    {tutorial.totalImpot}
+                    </td>
+                    <td>                    <i class="fa fa-bar-chart"></i>
+</td>
                     </tr>    
                 )
                 )
                 }
-
-
-
-
-
-
-
-
-
 
 </tbody>
 
@@ -355,11 +412,10 @@ export default class Paginations extends Component {
   </div>
       </div>
           
-      </div>
 
         </div>
       );
     }
   }
 
-
+export default withRouter(CalculPnl)

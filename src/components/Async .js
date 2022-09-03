@@ -3,6 +3,7 @@ import { CSVLink } from "react-csv";
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import ProfitabilityService from "../services/ProfitabilityService";
+import Pagination from "@material-ui/lab/pagination";
 
 const headers = [
   { label: "ID", key: "id" },
@@ -18,10 +19,15 @@ const headers = [
 class Async  extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: []
-    }
     this.csvLinkEl = React.createRef();
+    
+    this.state = {
+      data: [],
+   
+    };
+
+  
+
   }
 
 
@@ -33,9 +39,12 @@ class Async  extends Component {
 
 
 
+
   getUserList = () => {
     return fetch('http://localhost:8006/api/test/liste')
       .then(res => res.json());
+      window.location.reload(false)
+
   }
 
   downloadReport = async () => {
@@ -46,6 +55,12 @@ class Async  extends Component {
       });
     });
   }
+
+
+
+
+
+
 
   render() {
     const { data } = this.state;
@@ -91,8 +106,7 @@ class Async  extends Component {
 
 <br></br>
 
-
-        
+ 
 <br></br>
 
 
@@ -134,7 +148,7 @@ class Async  extends Component {
                             </tbody>
 
                 </table>      
-            
+               
           </div>
 
 

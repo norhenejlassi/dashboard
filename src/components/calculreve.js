@@ -1,5 +1,4 @@
 
-
 import React, { Component } from "react";
 import Pagination from "@material-ui/lab/pagination";
 import Profitaility from "./profitaility";
@@ -8,7 +7,7 @@ import Sidebar from './Sidebar';
 import { Button,Modal,Input } from 'react-bootstrap';
 import ProfitabilityService from "../services/ProfitabilityService";
 
-export default class Paginations extends Component {
+export default class Calculrevenue extends Component {
 
   constructor(props) {
     super(props);
@@ -165,7 +164,7 @@ export default class Paginations extends Component {
           </div>
       
 
-          <h4 style={{color:"red"}}>Resultat du calculs des depences par region</h4>
+          <h4 style={{color:"red"}}>Resultat du calculs des revenues</h4>
           <div >
            
           
@@ -318,8 +317,11 @@ export default class Paginations extends Component {
 </tbody>
 
 </table>
+
+
 <div className="mt-3">
               {"Items per Page: "}
+
               <select onChange={this.handlePageSizeChange} value={pageSize} style={{display:"none"}}>
                 {this.pageSizes.map((size) => (
                   <option key={size} value={size}>
@@ -327,6 +329,10 @@ export default class Paginations extends Component {
                   </option>
                 ))}
               </select>
+              <div style={{marginLeft: "700px"}} > 
+              <a href="#" > <i class="fas fa-calculator"></i></a>
+              {"Total: "} </div>
+           
               <Pagination
                 className="my-3"
                 count={count}
@@ -337,14 +343,11 @@ export default class Paginations extends Component {
                 shape="rounded"
                 onChange={this.handlePageChange}
               />
-            </div>
 
+            </div>
+        
     </div>
   </div>
-
-
-
-
 
 
   </div>

@@ -100,6 +100,7 @@ class List extends Component{
               <Button variant="primary"onClick={this.addEmployee}>
                 Ajouter Employer
               </Button>
+              <a href="http://localhost:8006/api/test/pdf">repport</a>
              </div>
            </div>  
             <div class="row">

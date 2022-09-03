@@ -2,22 +2,27 @@
 
 import React, { Component } from "react";
 import Pagination from "@material-ui/lab/pagination";
-import Profitaility from "./profitaility";
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import { Button,Modal,Input } from 'react-bootstrap';
-import ProfitabilityService from "../services/ProfitabilityService";
+import GestionkeyService from "../services/GestionkeyService";
+import { Redirect ,withRouter} from "react-router-dom";
 
-export default class Paginations extends Component {
+
+class Cle extends Component {
 
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
     this.retrieveTutorials = this.retrieveTutorials.bind(this);
+    this.addCle = this.addCle.bind(this);
+    this.updateClee = this.updateClee.bind(this);
+    this.deleteClee = this.deleteClee.bind(this);
+
+
 
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
-    this.calculProfi = this.calculProfi.bind(this);
 
     this.state = {
       tutorials: [],
@@ -26,30 +31,35 @@ export default class Paginations extends Component {
       searchTitle: "",
       page: 1,
       count: 0,
-      pageSize: 3,
+      pageSize: 5,
     };
-    this.pageSizes = [3, 6, 9];
+    this.pageSizes = [2, 5, 6];
   }
   componentDidMount() {
     this.retrieveTutorials();
   }
 
-  calculProfi(){
-    ProfitabilityService.calculProfi().then((res) => {
-      this.setState({ fileInfos: res.data});
-      window.location.reload(false)
-  });
- 
+  deleteClee(id){
+    GestionkeyService.deleteEmployee(id).then( res => {
+        this.setState({tutorials: this.state.tutorials.filter(clee => clee.id !== id)});
+    });
+}
 
-
-  }
-
+  updateClee(id){
+    this.props.history.push(`/upd-cle/${id}`);
+}
+  addCle(){
+    this.props.history.push('/ajoutcle');
+}
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
     this.setState({
       searchTitle: searchTitle,
     });
   }
+
+
+
   getRequestParams(searchTitle, page, pageSize) {
     let params = {};
     if (searchTitle) {
@@ -66,7 +76,7 @@ export default class Paginations extends Component {
   retrieveTutorials() {
     const { searchTitle, page, pageSize } = this.state;
     const params = this.getRequestParams(searchTitle, page, pageSize);
-    ProfitabilityService.getAll(params)
+    GestionkeyService.getAll(params)
       .then((response) => {
         const { tutorials, totalPages } = response.data;
         this.setState({
@@ -79,6 +89,7 @@ export default class Paginations extends Component {
         console.log(e);
       });
   }
+
 
   handlePageChange(event, value) {
     this.setState(
@@ -133,7 +144,7 @@ export default class Paginations extends Component {
               <input
                 type="text"
                
-                placeholder="Search by periode"
+                placeholder="Search by Key"
                 value={searchTitle}
                 onChange={this.onChangeSearchTitle}
               />
@@ -157,15 +168,15 @@ export default class Paginations extends Component {
 
 
             <div class="col-sm-3 offset-sm-1  mt-5 mb-4 text-gred">
-              <Button variant="primary"      onClick={this.calculProfi}
+              <Button variant="primary"    onClick={this.addCle}
 >
-                Calculer
+                Ajouter
               </Button>
              </div>
           </div>
       
 
-          <h4 style={{color:"red"}}>Resultat du calculs des depences par region</h4>
+       <h2 style={{color:"red" }}>Table des clées</h2><br></br>
           <div >
            
           
@@ -178,13 +189,11 @@ export default class Paginations extends Component {
                     <thead>
                         <tr>
                         <th>Id</th>
-                       <th> Expense Value</th>
                        <th> Key</th>
                       <th> Key Value </th>   
-                      <th> Label </th>  
                       <th> Region  </th>
-                      <th> Periode  </th>
-                      <th> Resultat </th>
+                      <th> Action  </th>
+                  
                         </tr>
                     </thead>
 
@@ -207,17 +216,7 @@ export default class Paginations extends Component {
                    
 
                     </td>
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
                    
-                  >
-                    {tutorial.expense_value}
-             
-                    </td>
 
 
                     <td
@@ -240,21 +239,10 @@ export default class Paginations extends Component {
                     key={index}
                    
                   >
-                    {tutorial.key_value}
+                    {tutorial.keyvalue}
                     
                     </td>
 
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.labelid}
-                    
-                    </td>
 
 
                     <td
@@ -269,33 +257,12 @@ export default class Paginations extends Component {
                     
                     </td>
 
-
-                    
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.periode}
-                    
-                    </td>
-
-
-
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.result}
-                    
-                    </td>
+                    <td>
+                                <a href="#" class="edit" title="Edit" data-toggle="tooltip" style={{color:"#D71DB2"}} onClick={ () => this.updateClee(tutorial.id)}><i class="material-icons">&#xE254;</i></a>
+                                <a href="#" class="delete" title="Delete" data-toggle="tooltip" style={{color:"red"}} onClick={ () => this.deleteClee(tutorial.id)} ><i class="material-icons">&#xE872;</i></a>
+                                          
+                                </td>
+      
 
 
 
@@ -305,13 +272,6 @@ export default class Paginations extends Component {
                 )
                 )
                 }
-
-
-
-
-
-
-
 
 
 
@@ -362,4 +322,4 @@ export default class Paginations extends Component {
     }
   }
 
-
+export default withRouter(Cle)
