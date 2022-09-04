@@ -45,11 +45,7 @@ import AuthService from '../services/auth.service';
                       <a class="nav-link waves-effect waves-light text-white">
                       </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light text-white">
-                            <i class="fas fa-envelope-open-text"></i>
-                        </a>
-                      </li>
+                   
                       <li class="nav-item">
                           <a class="nav-link waves-effect waves-light text-white" href='/'  onClick={ () => this.logOut()}>
                           <i class="fas fa-sign-out-alt"></i>

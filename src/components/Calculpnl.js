@@ -150,7 +150,6 @@ const required = value => {
 
     if (this.checkBtn.context._errors.length === 0) {
       GestionkeyService.calculpnl( this.state.searchTitle).then(() => {
-        window.location.reload();
         },
         error => {
           const resMessage =
@@ -171,6 +170,8 @@ error.response.data.message) ||
         loading: false
       });
     }
+    window.location.reload();
+
   }
 
 
@@ -315,7 +316,7 @@ error.response.data.message) ||
                     key={index}
                    
                   >
-                    {tutorial.chargesFinanciereNette}
+                    {tutorial.chargesfinance}
                     
                     </td>
 

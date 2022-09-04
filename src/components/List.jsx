@@ -89,7 +89,7 @@ class List extends Component{
               <div className="search">
                 <form class="form-inline">
                 <div className="form-group">
-                 <input  value={this.state.username} onChange={this.onChangeUsername}  class="form-control mr-sm-2" type="search" placeholder="Search Student" aria-label="Search"/>
+                 <input  value={this.state.username} onChange={this.onChangeUsername}  class="form-control mr-sm-2" type="search" placeholder="chercher un utilisateur" aria-label="Search"/>
                  <button type="button"  class="btn btn-success" onClick={this.searchEmployee} style={{marginLeft: "-20px"}}>Search</button>
    </div>
                 </form>
@@ -100,7 +100,6 @@ class List extends Component{
               <Button variant="primary"onClick={this.addEmployee}>
                 Ajouter Employer
               </Button>
-              <a href="http://localhost:8006/api/test/pdf">repport</a>
              </div>
            </div>  
             <div class="row">
