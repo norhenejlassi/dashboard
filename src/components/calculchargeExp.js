@@ -150,7 +150,8 @@ const required = value => {
 
     if (this.checkBtn.context._errors.length === 0) {
       GestionkeyService.calculchargeExp( this.state.searchTitle).then(() => {
-        window.location.reload();
+        this.props.history.push(`/Affichage`);
+
         },
         error => {
           const resMessage =
@@ -165,6 +166,7 @@ error.response.data.message) ||
             message: resMessage
           });
         }
+
       );
     } else {
       this.setState({
@@ -196,6 +198,8 @@ error.response.data.message) ||
            <Sidebar/>
 <div class="col main pt-5 mt-3">
 <div class="container ">
+  
+
         <div className=" row">
           <div className="col-md-8">
             <div className="input-group mb-3">
@@ -203,13 +207,13 @@ error.response.data.message) ||
             <input
                 type="text"
                
-                placeholder="Search by Key"
+                placeholder="Search by periode"
                 value={this.state.searchTitle}
                 onChange={this.onChangeSearchTitle}
               />
               
                <button
-                  class="btn btn-success"
+             class="btn btn-secondary" 
                   type="button"
                   style={{marginLeft: "-20px"}}
                   onClick={this.retrieveTutorials}
@@ -223,11 +227,11 @@ error.response.data.message) ||
                 }}>
            <div className="input-group-append">
              
-                 <button class="calcul"style={{marginLeft: "650px"}} onClick={this.calculchargeExp(this.state.periode)}>
+                 <button className="buttonAj"style={{marginLeft: "650px"}} onClick={this.calculchargeExp(this.state.periode)}>
                 Calculer
               </button> 
            
-              <h6 style={{marginLeft: "10px"}}>{"Totale:"}</h6>
+           
               </div>
               <CheckButton
               style={{ display: "none" }}
@@ -246,7 +250,7 @@ error.response.data.message) ||
           </div>
       <br></br>   <br></br>
 
-       <h2 style={{color:"red" }}>Calculer la charge d'exploitation</h2><br></br>
+       <h2 style={{color:"#778899"  }}>Calculer la charge d'exploitation</h2><br></br>
           <div >
            
             <div class="row">

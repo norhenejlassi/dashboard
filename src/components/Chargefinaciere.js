@@ -141,7 +141,7 @@ deleteCharge(id){
 
         <div class="formRegister ">
 
-        <div  style={{color:"blue"}}><h2><b>Ajouter une charge financiére nette</b></h2></div>
+        <div  style={{color:"#778899"  }}><h2><b>Ajouter une charge financiére nette</b></h2></div>
       
 
           <Form
@@ -184,7 +184,7 @@ deleteCharge(id){
            
 
                 <div className="form-group">
-                  <button variant="secondary" class="buttonAj" >Ajouter</button>
+                  <button className="buttonAj" >Ajouter</button>
 
                 </div>
               </div>

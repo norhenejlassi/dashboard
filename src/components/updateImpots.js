@@ -68,7 +68,7 @@ class UpdateImpots extends Component {
 
         <div class="formRegister ">
 
-        <div  style={{color:"blue"}}><h2><b>Modifier Impot</b></h2></div>
+        <div  style={{color:"#778899"  }}><h2><b>Modifier Impot</b></h2></div>
 
                                     <form>
                                         <div className = "form-group">
@@ -82,8 +82,8 @@ class UpdateImpots extends Component {
                                                 value={this.state.impots} onChange={this.changeImpotsHandler}/>
                                         </div>
                                     
-                                        <button  class="buttonAj" onClick={this.UpdateImpots}>Save</button>
-                                        <button class="buttonQi" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                        <button  className="buttonAj" onClick={this.UpdateImpots}>Enregistrer</button>
+                                        <button className="buttonQi" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Annuler</button>
                                     </form>
                                     </div>
 

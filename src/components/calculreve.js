@@ -1,59 +1,92 @@
-
 import React, { Component } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
 import Pagination from "@material-ui/lab/pagination";
-import Profitaility from "./profitaility";
+import { Button,Modal} from 'react-bootstrap';
+import CheckButton from "react-validation/build/button";
+import { useParams } from "react-router";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Redirect ,withRouter} from "react-router-dom";
+import GestionkeyService from "../services/GestionkeyService";
+
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
-import { Button,Modal,Input } from 'react-bootstrap';
-import ProfitabilityService from "../services/ProfitabilityService";
 
-export default class Calculrevenue extends Component {
 
+
+const required = value => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
+
+
+ class CalculReve extends Component {
+ 
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
     this.retrieveTutorials = this.retrieveTutorials.bind(this);
+    this.calculreve = this.calculreve.bind(this);
+    this.onChangePeriode= this.onChangePeriode.bind(this);
+
+
 
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
-    this.calculProfi = this.calculProfi.bind(this);
+    
+
 
     this.state = {
       tutorials: [],
+      peride:"",
       currentTutorial: null,
       currentIndex: -1,
       searchTitle: "",
       page: 1,
       count: 0,
-      pageSize: 3,
+      pageSize: 5,
     };
-    this.pageSizes = [3, 6, 9];
+    this.pageSizes = [2, 5, 6];
+  
   }
   componentDidMount() {
     this.retrieveTutorials();
   }
 
-  calculProfi(){
-    ProfitabilityService.calculProfi().then((res) => {
+  
+  calculreve(){
+    GestionkeyService.calculreve(this.state.periode).then((res) => {
       this.setState({ fileInfos: res.data});
-      window.location.reload(false)
   });
  
-
-
   }
-
+  
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
     this.setState({
       searchTitle: searchTitle,
     });
+  
+
   }
+  onChangePeriode(e) {
+    this.setState({
+      periode: e.target.value,
+    });
+  
+  }
+
   getRequestParams(searchTitle, page, pageSize) {
     let params = {};
     if (searchTitle) {
       params["title"] = searchTitle;
     }
+    
     if (page) {
       params["page"] = page - 1;
     }
@@ -65,7 +98,7 @@ export default class Calculrevenue extends Component {
   retrieveTutorials() {
     const { searchTitle, page, pageSize } = this.state;
     const params = this.getRequestParams(searchTitle, page, pageSize);
-    ProfitabilityService.getAll(params)
+    GestionkeyService.getAllreve(params)
       .then((response) => {
         const { tutorials, totalPages } = response.data;
         this.setState({
@@ -77,7 +110,9 @@ export default class Calculrevenue extends Component {
       .catch((e) => {
         console.log(e);
       });
+     
   }
+
 
   handlePageChange(event, value) {
     this.setState(
@@ -100,6 +135,46 @@ export default class Calculrevenue extends Component {
       }
     );
   }
+
+
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState({
+      message: "",
+      successful: false,
+      loading: true,
+    });
+    
+    this.form.validateAll();
+
+    if (this.checkBtn.context._errors.length === 0) {
+      GestionkeyService.calculreve( this.state.searchTitle).then(() => {
+        },
+        error => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+error.response.data.message) ||
+            error.message ||
+            error.toString();
+
+          this.setState({
+            loading: false,
+            message: resMessage
+          });
+        }
+      );
+    } else {
+      this.setState({
+        loading: false
+      });
+    }
+    window.location.reload();
+  }
+
+
+
   render() {
     const {
         searchTitle,
@@ -122,68 +197,66 @@ export default class Calculrevenue extends Component {
 <div class="col main pt-5 mt-3">
 <div class="container ">
         <div className=" row">
-        
-
-
           <div className="col-md-8">
             <div className="input-group mb-3">
-
-
-              <input
+              
+            <input
                 type="text"
                
-                placeholder="Search by periode"
-                value={searchTitle}
+                placeholder="Search by Key"
+                value={this.state.searchTitle}
                 onChange={this.onChangeSearchTitle}
               />
-              <div className="input-group-append">
-                <button
-                  class="btn btn-success"
+              
+               <button
+                  class="btn btn-secondary"
                   type="button"
                   style={{marginLeft: "-20px"}}
                   onClick={this.retrieveTutorials}
                 >
                   Search
                 </button>
+
+             <Form onSubmit={this.handleSubmit}
+                ref={c => {
+                  this.form = c;
+                }}>
+           <div className="input-group-append">
+             
+                 <button className="buttonAj" style={{marginLeft: "650px"}} onClick={this.calculreve(this.state.periode)}>
+                Calculer
+              </button> 
+           
               </div>
+              <CheckButton
+              style={{ display: "none" }}
+              ref={c => {
+                this.checkBtn = c;
+              }}
+            />
+              </Form>
 
               </div>
+             
+           </div>
 
             </div>
 
-
-
-
-
-            <div class="col-sm-3 offset-sm-1  mt-5 mb-4 text-gred">
-              <Button variant="primary"      onClick={this.calculProfi}
->
-                Calculer
-              </Button>
-             </div>
           </div>
-      
+      <br></br>   <br></br>
 
-          <h4 style={{color:"red"}}>Resultat du calculs des revenues</h4>
+       <h2 style={{color:"#778899"  }}>Calculer lRevenue par prestation</h2><br></br>
           <div >
            
-          
-
-
-
             <div class="row">
                 <div class="table-responsive " >
              <table class="table table-striped table-hover table-bordered">
-                    <thead>
+             <thead>
                         <tr>
-                        <th>Id</th>
-                       <th> Expense Value</th>
-                       <th> Key</th>
-                      <th> Key Value </th>   
-                      <th> Label </th>  
-                      <th> Region  </th>
+                        <th> id</th>
+                       <th> Prestation</th>
+                       <th> Revenue</th>
                       <th> Periode  </th>
-                      <th> Resultat </th>
                         </tr>
                     </thead>
 
@@ -206,19 +279,7 @@ export default class Calculrevenue extends Component {
                    
 
                     </td>
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.expense_value}
              
-                    </td>
-
-
                     <td
                      className={
                       (index === currentIndex ? "active" : "")
@@ -227,10 +288,9 @@ export default class Calculrevenue extends Component {
                     key={index}
                    
                   >
-                    {tutorial.key}
+                    {tutorial.prestation}
                     
                     </td>
-
                     <td
                      className={
                       (index === currentIndex ? "active" : "")
@@ -239,7 +299,7 @@ export default class Calculrevenue extends Component {
                     key={index}
                    
                   >
-                    {tutorial.key_value}
+                    {tutorial.revenu}
                     
                     </td>
 
@@ -247,34 +307,7 @@ export default class Calculrevenue extends Component {
                      className={
                       (index === currentIndex ? "active" : "")
                     }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.labelid}
-                    
-                    </td>
-
-
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.region}
-                    
-                    </td>
-
-
-                    
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
+                    onClick={() => this.view(tutorial.periode)}
                     key={index}
                    
                   >
@@ -282,46 +315,17 @@ export default class Calculrevenue extends Component {
                     
                     </td>
 
-
-
-                    <td
-                     className={
-                      (index === currentIndex ? "active" : "")
-                    }
-                    onClick={() => this.setActiveTutorial(tutorial, index)}
-                    key={index}
-                   
-                  >
-                    {tutorial.result}
                     
-                    </td>
-
-
-
-
-
                     </tr>    
                 )
                 )
                 }
 
-
-
-
-
-
-
-
-
-
 </tbody>
 
 </table>
-
-
 <div className="mt-3">
               {"Items per Page: "}
-
               <select onChange={this.handlePageSizeChange} value={pageSize} style={{display:"none"}}>
                 {this.pageSizes.map((size) => (
                   <option key={size} value={size}>
@@ -329,10 +333,6 @@ export default class Calculrevenue extends Component {
                   </option>
                 ))}
               </select>
-              <div style={{marginLeft: "700px"}} > 
-              <a href="#" > <i class="fas fa-calculator"></i></a>
-              {"Total: "} </div>
-           
               <Pagination
                 className="my-3"
                 count={count}
@@ -343,11 +343,14 @@ export default class Calculrevenue extends Component {
                 shape="rounded"
                 onChange={this.handlePageChange}
               />
-
             </div>
-        
+
     </div>
   </div>
+
+
+
+
 
 
   </div>
@@ -358,11 +361,10 @@ export default class Calculrevenue extends Component {
   </div>
       </div>
           
-      </div>
 
         </div>
       );
     }
   }
 
-
+export default withRouter(CalculReve)

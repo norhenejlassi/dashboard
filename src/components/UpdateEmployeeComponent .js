@@ -71,7 +71,7 @@ class UpdateEmployeeComponent extends Component {
 
         <div class="formRegister ">
 
-        <div  style={{color:"blue"}}><h2><b>Modifier employer</b></h2></div>
+        <div  style={{color:"#778899"  }}><h2><b>Modifier Utilisateur</b></h2></div>
 
                                     <form>
                                         <div className = "form-group">
@@ -89,8 +89,8 @@ class UpdateEmployeeComponent extends Component {
                                             <input placeholder="Departement" name="dep" className="form-control" 
                                                 value={this.state.dep} onChange={this.changeDepHandler}/>
                                         </div>
-                                        <button  class="buttonAj" onClick={this.updateEmployee}>Save</button>
-                                        <button class="buttonQi" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                        <button className='buttonAj' onClick={this.updateEmployee}>Enregistrer</button>
+                                        <button className='buttonQi' onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Annuler</button>
                                     </form>
                                     </div>
 

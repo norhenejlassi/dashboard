@@ -77,6 +77,10 @@ getAllCharge(params) {
 getAllPnl(params) {
   return http.get("recherchepnl", { params });
 }
+//get all revenu
+getAllreve(params) {
+  return http.get("pagirestreve", { params });
+}
 //calcule charge exploitation
  
 calculchargeExp(periode){
@@ -84,7 +88,12 @@ calculchargeExp(periode){
 
 
 }
+//calcul revenue
+calculreve(periode){
+  return axios.post(API_URL+"getRevenuByPeriode",{periode});
 
+
+}
 
 
 //getChargeExp(periode) {

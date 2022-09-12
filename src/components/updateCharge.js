@@ -68,7 +68,7 @@ class UpdateCharge extends Component {
 
         <div class="formRegister ">
 
-        <div  style={{color:"blue"}}><h2><b>Modifier Charge Financiere</b></h2></div>
+        <div  style={{color:"#778899"  }}><h2><b>Modifier Charge Financiere</b></h2></div>
 
                                     <form>
                                         <div className = "form-group">
@@ -82,8 +82,8 @@ class UpdateCharge extends Component {
                                                 value={this.state.chargeFinanciere} onChange={this.changeChargeFinabciereHandler}/>
                                         </div>
                                     
-                                        <button  class="buttonAj" onClick={this.UpdateCharge}>Save</button>
-                                        <button class="buttonQi" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                        <button className="buttonAj" onClick={this.UpdateCharge}>Enregistrer</button>
+                                        <button className="buttonQi" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Annuler</button>
                                     </form>
                                     </div>
 

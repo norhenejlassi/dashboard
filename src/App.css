@@ -113,6 +113,7 @@
   color: #fff;
   font-size: 14px;
   letter-spacing: 1px;
+  
 }
 
 
@@ -122,16 +123,16 @@
   width: 600px;
   margin: auto;
   padding: 60px 60px;
-  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxkzP5mgHDc3BlcERVU0bWSNPWcQERw8_nbw&usqp=CAU) no-repeat   center center #505050;   background-size: cover;
+  background: url(https://cdn.create.vista.com/api/media/small/195764676/stock-photo-black-grey-empty-monochrome-background) no-repeat   center center #505050;   background-size: cover;
   box-shadow: 0px 30px 60px -5px #000;
 }
 
 
 
 .active {
-  border-bottom: 2px solid #1161ed;
   color: #fff;
-  position: center;
+  position: fixed;
+  font-size: x-large;
 
 }
 
@@ -169,6 +170,7 @@
 .inp[type="password"] {
   font-family: 'Montserrat', sans-serif;
   color: #fff;
+
   
 }
 
@@ -193,7 +195,7 @@
 }
 
 .signin {
-  background-color: #1161ed;
+  background-color: #6f7072;
   color: #FFF;
   width: 100%;
   padding: 10px 20px;
@@ -214,7 +216,10 @@
   outline: none;
 }
 
+.btnchoi {
 
+  background-color:#EB9532;
+}
 .loginnn {
   text-align: center;
   display: block;
@@ -224,8 +229,11 @@
   color: rgba(255, 255, 255, 0.2);
 }
 
-
-
+.imgtele {
+  border-radius: 4px;
+  padding: 5px;
+  width: 50px;
+}
 
 
 .buttonAj {
@@ -238,7 +246,7 @@
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: green;
+    background-color:#EB9532;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
@@ -257,16 +265,16 @@
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: blue;
+    background-color: #EB9532;
     border: none;
   
     
   }
   
-  .buttonAj:hover {background-color: #3e8e41}
+  .buttonAj:hover {background-color: 	#EB9532 }
   
   .buttonAj:active {
-    background-color: #3e8e41;
+    background-color: 	#EB9532;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
@@ -283,20 +291,21 @@
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: red;
+    background-color:#EBBD63;
     border: none;
     border-radius: 15px;
     box-shadow: 0 9px #999;
     
   }
   
-  .buttonQi:hover {background-color: #ca2b2b}
+  .buttonQi:hover {background-color: #EBBD63}
   
   .buttonQi:active {
-    background-color: #ca2b2b;
+    background-color: #EBBD63;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-  }
+  
+   }
   .formRegister{
     height:300px;
     width:600px;

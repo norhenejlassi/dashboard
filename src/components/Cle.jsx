@@ -150,7 +150,8 @@ class Cle extends Component {
               />
               <div className="input-group-append">
                 <button
-                  class="btn btn-success"
+                 class="btn btn-secondary"
+               
                   type="button"
                   style={{marginLeft: "-20px"}}
                   onClick={this.retrieveTutorials}
@@ -168,7 +169,7 @@ class Cle extends Component {
 
 
             <div class="col-sm-3 offset-sm-1  mt-5 mb-4 text-gred">
-              <Button variant="primary"    onClick={this.addCle}
+              <Button className="buttonAj"   onClick={this.addCle}
 >
                 Ajouter
               </Button>
@@ -176,7 +177,7 @@ class Cle extends Component {
           </div>
       
 
-       <h2 style={{color:"red" }}>Table des clées</h2><br></br>
+       <h2 style={{color:"#778899"  }}>Table des clées de répartition</h2><br></br>
           <div >
            
           

@@ -204,14 +204,14 @@ error.response.data.message) ||
             <input
                 type="text"
                
-                placeholder="Search by Key"
+                placeholder="Entrez annéé"
                 value={this.state.searchTitle}
                 onChange={this.onChangeSearchTitle}
               />
               
                <button
-                  class="btn btn-success"
-                  type="button"
+             class="btn btn-secondary"
+             type="button"
                   style={{marginLeft: "-20px"}}
                   onClick={this.retrieveTutorials}
                 >
@@ -224,11 +224,10 @@ error.response.data.message) ||
                 }}>
            <div className="input-group-append">
              
-                 <button class="calcul"style={{marginLeft: "650px"}} onClick={this.calculpnl(this.state.periode)}>
+                 <button className='buttonAj' style={{marginLeft: "650px"}} onClick={this.calculpnl(this.state.periode)}>
                 Calculer
               </button> 
            
-              <h6 style={{marginLeft: "10px"}}>{"Totale:"}</h6>
               </div>
               <CheckButton
               style={{ display: "none" }}
@@ -247,7 +246,7 @@ error.response.data.message) ||
           </div>
       <br></br>   <br></br>
 
-       <h2 style={{color:"red" }}>Resultat P&L par année</h2><br></br>
+       <h2 style={{color:"#778899"  }}>Resultat P&L par année</h2><br></br>
           <div >
            
             <div class="row">

@@ -85,9 +85,10 @@ export default class Login extends Component {
     return (
      
 <div class="login">
-
-  <h2 class="active">Connexion </h2>
-
+<h1><i class="fa fa-user" aria-hidden="true"style={{color: "white",marginLeft: "200px"}}></i><h1 class="active" style={{marginLeft: "170px"}}> <br></br>
+ Connexion </h1></h1>
+ 
+<br></br>
 
 
 

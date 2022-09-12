@@ -99,6 +99,8 @@ export default class Gestioncle extends Component {
             message: response.data.message,
             successful: true
           });
+          this.props.history.push('/clees');
+
         },
         error => {
           const resMessage =
@@ -136,7 +138,7 @@ export default class Gestioncle extends Component {
 
         <div class="formRegister ">
 
-        <div  style={{color:"blue"}}><h2><b>Ajouter un nouveau cle</b></h2></div>
+        <div  style={{color:"#778899"  }}><h2><b>Ajouter un nouveau cle</b></h2></div>
 
           <Form
             onSubmit={this.handleRegister}
@@ -201,8 +203,8 @@ export default class Gestioncle extends Component {
                 </div>
 
                 <div className="form-group">
-                  <button variant="secondary" class="buttonAj" >Ajouter</button>
-                  <button onClick={this.cancel.bind(this)}   class="buttonQi" style={{marginLeft: "20px"}}>Cancel</button>
+                  <button class="btn btn-dark"  >Ajouter</button>
+                  <button onClick={this.cancel.bind(this)}   class="btn btn-dark"  style={{marginLeft: "20px"}}>Cancel</button>
 
                 </div>
               </div>

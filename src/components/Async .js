@@ -80,11 +80,12 @@ class Async  extends Component {
          <Sidebar/>
 <div class="col main pt-5 mt-3">
 <div class="container ">
-
+<br></br>
+<br></br>
 <div class="row ">
-
- 
-           <div  style={{color:"blue"}}><h2><b>Exporter un fichier CSV</b></h2></div>
+<br></br>
+<br></br>
+           <div  style={{color:"#778899"  }}><h2><b>Exporter un fichier CSV</b></h2></div>
           
         </div>
         <br/>  <br/>  

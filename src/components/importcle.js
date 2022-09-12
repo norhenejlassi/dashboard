@@ -90,20 +90,13 @@ import Sidebar from './Sidebar'
            <Sidebar/>
 <div class="col main pt-5 mt-3">
 <div class="container ">
-  
-  <div class="row ">
+<div class="row ">
   
           
-          <div class="col-sm-3 mt-5 mb-4 text-gred">
-             <div className="search">
-               <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="chercher un document" aria-label="Search"/>
-              
-               </form>
-             </div>    
-             </div>  
-             <div class="col-sm-3 offset-sm-2 mt-5 mb-4 text-gred" style={{color:"blue"}}><h2><b>Importer des table</b></h2></div>
-            
+  <h2 class=" offset-sm-2" style={{color:"#778899"  }}><b>Importer des table</b></h2>
+
+          
+
           </div>
           <br/>  <br/>  
         <div>

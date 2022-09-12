@@ -72,7 +72,7 @@ class UpdateCle extends Component {
 
         <div class="formRegister ">
 
-        <div  style={{color:"blue"}}><h2><b>Modifier Clé</b></h2></div>
+        <div  style={{color:"#778899"  }}><h2><b>Modifier Clé</b></h2></div>
 
                                     <form>
                                         <div className = "form-group">
@@ -90,8 +90,8 @@ class UpdateCle extends Component {
                                             <input placeholder="region" name="region" className="form-control" 
                                                 value={this.state.region} onChange={this.changeRegionHandler}/>
                                         </div>
-                                        <button  class="buttonAj" onClick={this.updateClee}>Save</button>
-                                        <button class="buttonQi" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                        <button  className='buttonAj' onClick={this.updateClee}>Enregistrer</button>
+                                        <button className='buttonQi' onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Annuler</button>
                                     </form>
                                     </div>
 

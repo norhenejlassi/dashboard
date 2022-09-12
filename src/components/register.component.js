@@ -163,7 +163,7 @@ export default class Register extends Component {
 
         <div class="formRegister ">
 
-        <div  style={{color:"blue"}}><h2><b>Ajouter un nouveau employer</b></h2></div>
+        <div  style={{color:"#778899"  }}><h2><b>Ajouter un nouveau employer</b></h2></div>
 
           <Form
             onSubmit={this.handleRegister}
@@ -223,8 +223,8 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <button variant="secondary" class="buttonAj" >Ajouter</button>
-                  <button onClick={this.cancel.bind(this)}   class="buttonQi" style={{marginLeft: "20px"}}>Cancel</button>
+                  <button class="buttonAj">Ajouter</button>
+                  <button onClick={this.cancel.bind(this)}  class="buttonQi"  style={{marginLeft: "20px"}}>Annuler</button>
 
                 </div>
               </div>

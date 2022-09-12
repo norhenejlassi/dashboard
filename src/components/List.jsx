@@ -90,14 +90,14 @@ class List extends Component{
                 <form class="form-inline">
                 <div className="form-group">
                  <input  value={this.state.username} onChange={this.onChangeUsername}  class="form-control mr-sm-2" type="search" placeholder="chercher un utilisateur" aria-label="Search"/>
-                 <button type="button"  class="btn btn-success" onClick={this.searchEmployee} style={{marginLeft: "-20px"}}>Search</button>
+                 <button type="button"  class="btn btn-secondary" onClick={this.searchEmployee} style={{marginLeft: "-20px"}}>Search</button>
    </div>
                 </form>
               </div>    
               </div>  
-              <div class="col-sm-3 offset-sm-2 mt-5 mb-4 text-gred" style={{color:"green"}}><h2><b>Liste des employes</b></h2></div>
+              <div class="col-sm-3 offset-sm-2 mt-5 mb-4 text-gred" style={{color:"#778899"  }}><h3><b>Liste des utilisateurs</b></h3></div>
               <div class="col-sm-3 offset-sm-1  mt-5 mb-4 text-gred">
-              <Button variant="primary"onClick={this.addEmployee}>
+              <Button  className="buttonAj" onClick={this.addEmployee} >
                 Ajouter Employer
               </Button>
              </div>

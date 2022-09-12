@@ -17,6 +17,7 @@ import BoardModerator from "./components/board-moderator.component";
 import List from "./components/List";
 
 import Cle from "./components/Cle";
+import Graph from "./components/grapfcharge";
 
 import Profitability from "./components/profitaility";
 
@@ -53,6 +54,7 @@ import UpdateImpots from "./components/updateImpots";
 import CalculChargeExp from "./components/calculchargeExp";
 import Ca from "./components/ca";
 import Calculpnl from "./components/Calculpnl";
+import Affichage from "./components/affichage";
 
 
 
@@ -142,6 +144,7 @@ class App extends Component {
 
             <ProtectedRoute path = "/calculreve" component = {calculreve}/>
             <ProtectedRoute path = "/Dashboard" component = {Dashboard}/>
+            <ProtectedRoute path = "/Affichage" component = {Affichage}/>
 
             <ProtectedRoute path = "/UploadFiles" component = {UploadFiles}/>
             <ProtectedRoute path = "/import" component = {Import}/>
@@ -152,6 +155,8 @@ class App extends Component {
             <ProtectedRoute path = "/chargefinanciere" component = {ChargeFinancier}/>
 
             <ProtectedRoute path = "/impots" component = {Impots}/>
+            <ProtectedRoute path = "/graph/:id" component = {Graph}/>
+
 
             <ProtectedRoute path = "/upd-cle/:id" component = {UpdateCle}/>
             
