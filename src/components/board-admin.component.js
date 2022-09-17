@@ -51,9 +51,19 @@ export default class BoardAdmin extends Component {
   
                    
                
-             </div>
+           
+             <div class="col main pt-5 mt-3">
+
+     
+
+<div class="row ">
+             <iframe  title="Dashboard" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=a40c1959-9ff0-48ed-94e0-ffdb82250997&autoAuth=true&ctid=889cdbee-d881-42dc-bd06-ad3237c34a53" frameborder="0" allowFullScreen="true"></iframe>
             </div>  
         </div>  
+        </div>
+        </div>
+        </div>
+       
     );
   }
 }

@@ -44,6 +44,7 @@ const required = value => {
     this.state = {
       tutorials: [],
       peride:"",
+  
       currentTutorial: null,
       currentIndex: -1,
       searchTitle: "",
@@ -65,6 +66,10 @@ const required = value => {
   });
  
   }
+
+  viewPnl(id){
+    this.props.history.push(`/pnl/${id}`);
+}
   
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
@@ -177,6 +182,7 @@ error.response.data.message) ||
 
 
   render() {
+    
     const {
         searchTitle,
         tutorials,
@@ -365,7 +371,7 @@ error.response.data.message) ||
                   >
                     {tutorial.totalImpot}
                     </td>
-                    <td>                    <i class="fa fa-bar-chart"></i>
+                    <td>     <i class="fa fa-bar-chart"  onClick={ () => this.viewPnl(tutorial.periode)}></i>
 </td>
                     </tr>    
                 )

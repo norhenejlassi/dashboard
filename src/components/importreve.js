@@ -26,7 +26,6 @@ import Sidebar from './Sidebar'
           this.setState({ fileInfos: res.data});
       });
   }
-
   
     selectFile(event) {
       this.setState({
@@ -134,9 +133,6 @@ import Sidebar from './Sidebar'
             {message}
           </div>
   
-        
-
-
           <div class="row">
                 <div class="table-responsive " >
           <table class="table table-striped table-hover table-bordered">
@@ -184,20 +180,6 @@ import Sidebar from './Sidebar'
 
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           
         </div>

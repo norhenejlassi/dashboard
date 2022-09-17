@@ -6,10 +6,10 @@ import Navbar from './Navbar';
 import Sidebar from './Sidebar'
 import { savePDF } from '@progress/kendo-react-pdf';
 import ReactDOM from 'react-dom';
-import Dashboard from './graph';
+import Dashboard from './graphreve';
 import graphService from '../services/graphService';
 
- class ImportReve extends Component {
+ class ImportRev extends Component {
     constructor(props) {
       super(props);
 
@@ -24,7 +24,7 @@ import graphService from '../services/graphService';
         savePDF(ReactDOM.findDOMNode(this.export), { paperSize: 'auto' });
       }
       cancel(id){
-        this.props.history.push(`/affichage/${id}`);
+        this.props.history.push(`/Affichagereve/${id}`);
     }
 
   
@@ -52,8 +52,11 @@ import graphService from '../services/graphService';
 <div>
 
               <div className='exp'>
-              <button className='buttonAj' onClick={this.handlePDFExport}>Exporter en PDF</button>
+                <div style={{display:"flex"}}>
+                <button className='buttonAj' onClick={this.handlePDFExport}>Exporter en PDF</button>
               <button className="buttonQi" onClick={() =>this.cancel(this.state.id)} style={{marginLeft: "450px"}}>Retour</button>
+                </div>
+              
               </div>
               <div className="export"  ref={(el) => this.export = el}>
               <div >
@@ -77,4 +80,4 @@ import graphService from '../services/graphService';
       );
     }
 }
-export default withRouter(ImportReve);
+export default withRouter(ImportRev);

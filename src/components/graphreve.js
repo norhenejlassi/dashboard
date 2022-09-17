@@ -1,4 +1,4 @@
-import { Bar } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import React, { useEffect, useState } from 'react';
 import {Chart as ChartJs, Tooltip, Title, ArcElement, Legend} from 'chart.js';
 import { useParams } from "react-router";
@@ -26,7 +26,7 @@ ChartJs.register(
         'Blue'
     ], 
   };
-  function Graph() {
+  function Graphreve() {
     let { id } = useParams();
     const [data, setData] = useState({
         
@@ -52,7 +52,7 @@ ChartJs.register(
  
     useEffect(()=> {
       const fetchData = () =>  {
-        fetch( `http://localhost:8006/api/test/PoucentageChargesExp/${id}`).then((data) => {
+        fetch( `http://localhost:8006/api/test/PourcentageRevenue/${id}`).then((data) => {
           const res = data.json();
           return res
         }).then((res) => {
@@ -60,8 +60,8 @@ ChartJs.register(
           const label = [];
           const data = [];
           for(var i of res) {
-              label.push(i.label);
-              data.push(i.poucentage)
+              label.push(i.labelrevenue);
+              data.push(i.pourcentage)
           }
           setData(
             {
@@ -100,13 +100,13 @@ ChartJs.register(
             
                 <br />
                 <br />
+                
               <div className="App" style={{width:'75%', height:'25%',marginLeft:'30%'}}>
 
 
-
-                  <h5 class="mt-3 mb-3 text-secondary">Pourcentage  charge exploitation de Annee  { id } </h5>
-                <div style={{ maxWidth: "100%" }}>
-                    <Bar  data={data}/>
+                <h5 class="mt-3 mb-3 text-secondary">Pourcentage revenues par type revenue de  Année  { id } </h5>
+                <div style={{ maxWidth: "50%" }}>
+                    <Pie  data={data}/>
                 </div>
                 </div>
               </div>
@@ -114,4 +114,4 @@ ChartJs.register(
       
     );
   }
-  export default Graph;
+  export default Graphreve;

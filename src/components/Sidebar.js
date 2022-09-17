@@ -8,7 +8,7 @@ const Sidebar = () => {
     
          <div class="col-md-3 col-lg-2 sidebar-offcanvas pl-0" id="sidebar" role="navigation" style={{ }}>
             <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 " style={{backgroundColor:"#e9ecef",margin :"-75%",width:"300px",height:"800px"}}>
-                <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="#"><h5>Dashboard Admin</h5></a></li>
+                <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="/admin"><h5>Dashboard Admin</h5></a></li>
                 <li class="nav-item mb-2 "><a class="nav-link text-secondary" href='/employees'><i class="fas fa-user font-weight-bold"></i> <span className="ml-3">Utilisateur</span></a></li>
                
                  
@@ -43,12 +43,11 @@ const Sidebar = () => {
                     </ul>
                 </li>
 
-
                 <li class="nav-item mb-2">
                     <a class="nav-link text-secondary" href="#submenu4" data-toggle="collapse" data-target="#submenu4"><i class="fas fa-calculator"></i> <span className="ml-3"> Calcul▾</span></a>
                     <ul class="list-unstyled flex-column pl-3 collapse" id="submenu4" aria-expanded="false">
-                    <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="calculchargexp"><i class="fas fa-calculator"></i> charge Exploitatio</a></li>
-                    <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="calculreve"><i class="fas fa-calculator"></i> revenue</a></li>
+                    <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/calculchargexp"><i class="fas fa-calculator"></i> charge Exploitatio</a></li>
+                    <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/calculreve"><i class="fas fa-calculator"></i> revenue</a></li>
 
 
                        <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/pagination"><i class="fas fa-calculator"></i> Dépense </a></li>
@@ -64,7 +63,7 @@ const Sidebar = () => {
                     <a class="nav-link text-secondary" href="#submenu2" data-toggle="collapse" data-target="#submenu2"><i class="far fa-file-word font-weight-bold"></i> <span className="ml-3"> Reports▾</span></a>
                     <ul class="list-unstyled flex-column pl-3 collapse" id="submenu2" aria-expanded="false">
                        <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/Dashboard"><i class="fas fa-book-reader"></i> Data Report </a></li>
-                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href=""> <i class="fas fa-book-medical"></i> File Report </a></li>
+                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/resultatfinal"> <i class="fas fa-book-medical"></i> File Report </a></li>
                     </ul>
                 </li>
 

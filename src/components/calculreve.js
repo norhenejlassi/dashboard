@@ -4,7 +4,6 @@ import Input from "react-validation/build/input";
 import Pagination from "@material-ui/lab/pagination";
 import { Button,Modal} from 'react-bootstrap';
 import CheckButton from "react-validation/build/button";
-import { useParams } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Redirect ,withRouter} from "react-router-dom";
 import GestionkeyService from "../services/GestionkeyService";
@@ -150,6 +149,10 @@ const required = value => {
 
     if (this.checkBtn.context._errors.length === 0) {
       GestionkeyService.calculreve( this.state.searchTitle).then(() => {
+        
+
+    
+
         },
         error => {
           const resMessage =
@@ -170,9 +173,11 @@ error.response.data.message) ||
         loading: false
       });
     }
-    window.location.reload();
+    this.props.history.push(`/AffichageReve`);
   }
-
+  cancel(id){
+    this.props.history.push(`/affichagereve/${id}`);
+}
 
 
   render() {
@@ -221,12 +226,13 @@ error.response.data.message) ||
                 ref={c => {
                   this.form = c;
                 }}>
+
            <div className="input-group-append">
-             
+
                  <button className="buttonAj" style={{marginLeft: "650px"}} onClick={this.calculreve(this.state.periode)}>
                 Calculer
               </button> 
-           
+
               </div>
               <CheckButton
               style={{ display: "none" }}
@@ -237,8 +243,11 @@ error.response.data.message) ||
               </Form>
 
               </div>
-             
+
            </div>
+           <div> 
+             <button className="buttonQi" onClick={() =>this.cancel(this.state.id)} style={{marginLeft: "px"}}>Dashboard</button>
+            </div>
 
             </div>
 

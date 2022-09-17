@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AuthService from "./services/auth.service";
-import Async  from "./components/Async ";
+import Async  from "./components/Async";
 
 import pagination from "./components/pagination";
 import ProtectedRoute from './components/ProtectedRouter';
@@ -18,6 +18,7 @@ import List from "./components/List";
 
 import Cle from "./components/Cle";
 import Graph from "./components/grapfcharge";
+
 
 import Profitability from "./components/profitaility";
 
@@ -55,7 +56,13 @@ import CalculChargeExp from "./components/calculchargeExp";
 import Ca from "./components/ca";
 import Calculpnl from "./components/Calculpnl";
 import Affichage from "./components/affichage";
+import Affichagereve from "./components/AffichageRevenue";
+import Graphreve from "./components/exportrevenu";
+import Resultatfinal from "./components/Resultatfinal";
+import pdffinal from "./components/pdffinal";
 
+import Pnl from "./components/Pnl";
+import chexp from "./components/chexp";
 
 
 class App extends Component {
@@ -145,6 +152,7 @@ class App extends Component {
             <ProtectedRoute path = "/calculreve" component = {calculreve}/>
             <ProtectedRoute path = "/Dashboard" component = {Dashboard}/>
             <ProtectedRoute path = "/Affichage" component = {Affichage}/>
+            <ProtectedRoute path = "/Affichagereve" component = {Affichagereve}/>
 
             <ProtectedRoute path = "/UploadFiles" component = {UploadFiles}/>
             <ProtectedRoute path = "/import" component = {Import}/>
@@ -156,7 +164,9 @@ class App extends Component {
 
             <ProtectedRoute path = "/impots" component = {Impots}/>
             <ProtectedRoute path = "/graph/:id" component = {Graph}/>
+            <ProtectedRoute path = "/graphreve/:id" component = {Graphreve}/>
 
+            <ProtectedRoute path = "/pdffinal/:id" component = {pdffinal}/>
 
             <ProtectedRoute path = "/upd-cle/:id" component = {UpdateCle}/>
             
@@ -168,9 +178,14 @@ class App extends Component {
             <ProtectedRoute path = "/view-employee/:id" component = {ViewEmployeeComponent}/>
             <ProtectedRoute path = "/upd-employee/:id" component = { UpdateEmployeeComponent }/>
        
-            
+            <ProtectedRoute path = "/pnl/:id" component = { Pnl }/>
+
+            <ProtectedRoute path = "/chexp/:id" component = { chexp }/>
 
             <ProtectedRoute path = "/UploadFiles/:id" component = { UploadFiles }/>
+            <ProtectedRoute path = "/resultatfinal" component = { Resultatfinal }/>
+
+
           </Switch>
                
         </div>
