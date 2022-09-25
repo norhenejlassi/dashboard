@@ -62,6 +62,19 @@ uploadReve(file, onUploadProgress) {
   });
 }
 
+uploaddotation(file, onUploadProgress) {
+  let formData = new FormData();
+
+  formData.append("file", file);
+
+  return http.post("/importcleDotation", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    onUploadProgress,
+  });
+}
+
 getCles(){
   return axios.get(API_URL+'cles');
 }
@@ -72,7 +85,9 @@ getRevenue(){
 getChargexp(){
   return axios.get(API_URL+'chargexps');
 }
-  
+getClesdotation(){
+  return axios.get(API_URL+'clesdotation');
+}
 }
 
 export default new ImportService();

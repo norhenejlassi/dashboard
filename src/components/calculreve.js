@@ -246,7 +246,7 @@ error.response.data.message) ||
 
            </div>
            <div> 
-             <button className="buttonQi" onClick={() =>this.cancel(this.state.id)} style={{marginLeft: "px"}}>Dashboard</button>
+             <button className="buttonQi" onClick={() =>this.cancel(this.state.id)} style={{marginLeft: "650px"}}>Dashboard</button>
             </div>
 
             </div>

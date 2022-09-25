@@ -6,8 +6,8 @@ import Navbar from './Navbar';
 import Sidebar from './Sidebar'
 import { getPageMargin, savePDF } from '@progress/kendo-react-pdf';
 import ReactDOM from 'react-dom';
-import Dashboard from './graph';
-import Dashboarde from './graphreve';
+import Dashboard from './graphregionalimpot';
+import Dashboarde from './graphregionalnett';
 import Pnl from './Pnl';
 
 import AuthService from '../services/user.service';
@@ -16,7 +16,7 @@ import Calculpnl from "./Calculpnl";
 
 
 
- class ImportReve extends Component {
+ class Pdfregional extends Component {
   
     constructor(props) {
       super(props);
@@ -97,17 +97,17 @@ import Calculpnl from "./Calculpnl";
                                 </div>  
                                 <div style={{ color:"white"}}>
                                 {(this.UserNow) ? 
-                                <h8 > Nom et Prenom:  Norhene Jlassi {currentUser.username}  </h8>   : null}<br></br>
+                                <h8 > Nom et Prenom:   {currentUser.username}  </h8>   : null}<br></br>
                              
                                 <h8 > Date/Heure: {this.state.date}</h8>
                                 </div> 
                                 
                                                   
                     </div>
-                    <div  style={{marginLeft:"200px"}}> <Pnl /></div> 
-                    <hr/>
+                 
+
               <div > <Dashboard /></div> 
-              <hr/>
+              
               <div style={{marginLeft:"-200px"}}>  <Dashboarde/></div>  
               </div>
               </div>
@@ -127,7 +127,7 @@ import Calculpnl from "./Calculpnl";
       );
     }
 }
-export default withRouter(ImportReve);
+export default withRouter(Pdfregional);
 
 
 

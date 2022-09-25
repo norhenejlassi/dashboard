@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from 'react'
 import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
+
 import Pagination from "@material-ui/lab/pagination";
 import { Button,Modal} from 'react-bootstrap';
 import CheckButton from "react-validation/build/button";
@@ -11,178 +11,188 @@ import GestionkeyService from "../services/GestionkeyService";
 
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import graphService from '../services/graphService';
+import { Component } from 'react';
+  
 
-
-
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-
-
- class CalculPnl extends Component {
- 
-  constructor(props) {
-    super(props);
-    this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
-    this.retrieveTutorials = this.retrieveTutorials.bind(this);
-    this.calculpnl = this.calculpnl.bind(this);
-    this.onChangePeriode= this.onChangePeriode.bind(this);
-
-
-
-    this.handlePageChange = this.handlePageChange.bind(this);
-    this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
+ class Resultatregional extends Component{
+  
+    constructor(props) {
+        super(props); 
+        this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
+        this.retrieveTutorials = this.retrieveTutorials.bind(this);
+        this.onChangePeriode= this.onChangePeriode.bind(this);
     
-
-
-    this.state = {
-      tutorials: [],
-      peride:"",
-  
-      currentTutorial: null,
-      currentIndex: -1,
-      searchTitle: "",
-      page: 1,
-      count: 0,
-      pageSize: 5,
-    };
-    this.pageSizes = [2, 5, 6];
-  
-  }
-  componentDidMount() {
-    this.retrieveTutorials();
-  }
-
-  
-  calculpnl(){
-    GestionkeyService.calculpnl(this.state.periode).then((res) => {
-      this.setState({ fileInfos: res.data});
-  });
- 
-  }
-
-  viewPnl(id){
-    this.props.history.push(`/pnl/${id}`);
-}
-  
-  onChangeSearchTitle(e) {
-    const searchTitle = e.target.value;
-    this.setState({
-      searchTitle: searchTitle,
-    });
-  
-
-  }
-  onChangePeriode(e) {
-    this.setState({
-      periode: e.target.value,
-    });
-  
-  }
-
-  getRequestParams(searchTitle, page, pageSize) {
-    let params = {};
-    if (searchTitle) {
-      params["title"] = searchTitle;
-    }
     
-    if (page) {
-      params["page"] = page - 1;
+    
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.handlePageSizeChange = this.handlePageSizeChange.bind(this);
+        
+    
+    
+        this.state = {
+          tutorials: [],
+          peride:"",
+      
+          currentTutorial: null,
+          currentIndex: -1,
+          searchTitle: "",
+          page: 1,
+          count: 0,
+          pageSize: 5,
+        };
+        this.pageSizes = [2, 5, 6];
+      
+        this.state = {
+            id: this.props.match.params.id,
+          charges: [],
+          annes: [],
+         periode: "",
+         chargeFinanciere: "",
+          successful: false,
+          message: ""
+        };
+      }
+      
+      componentDidMount(){
+        graphService.getannee().then( res => {
+            this.setState({charges: res.data});
+       });
+       graphService.getresultall().then( res => {
+          this.setState({annes: res.data});
+   });
+      }
+      
+  
+
+
+
+
+
+
+
+
+      
+      componentDidMount() {
+        this.retrieveTutorials();
+      }
+    
+      
+
+    
+      viewPnl(id){
+        this.props.history.push(`/pdfregional/${id}`);
     }
-    if (pageSize) {
-      params["size"] = pageSize;
-    }
-    return params;
-  }
-  retrieveTutorials() {
-    const { searchTitle, page, pageSize } = this.state;
-    const params = this.getRequestParams(searchTitle, page, pageSize);
-    GestionkeyService.getAllPnl(params)
-      .then((response) => {
-        const { tutorials, totalPages } = response.data;
+      
+      onChangeSearchTitle(e) {
+        const searchTitle = e.target.value;
         this.setState({
-          tutorials: tutorials,
-          count: totalPages,
+          searchTitle: searchTitle,
         });
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-     
-  }
-
-
-  handlePageChange(event, value) {
-    this.setState(
-      {
-        page: value,
-      },
-      () => {
-        this.retrieveTutorials();
-      }
-    );
-  }
-  handlePageSizeChange(event) {
-    this.setState(
-      {
-        pageSize: event.target.value,
-        page: 1
-      },
-      () => {
-        this.retrieveTutorials();
-      }
-    );
-  }
-
-
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.setState({
-      message: "",
-      successful: false,
-      loading: true,
-    });
+      
     
-    this.form.validateAll();
-
-    if (this.checkBtn.context._errors.length === 0) {
-      GestionkeyService.calculpnl( this.state.searchTitle).then(() => {
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-error.response.data.message) ||
-            error.message ||
-            error.toString();
-
+      }
+      onChangePeriode(e) {
+        this.setState({
+          periode: e.target.value,
+        });
+      
+      }
+    
+      getRequestParams(searchTitle, page, pageSize) {
+        let params = {};
+        if (searchTitle) {
+          params["title"] = searchTitle;
+        }
+        
+        if (page) {
+          params["page"] = page - 1;
+        }
+        if (pageSize) {
+          params["size"] = pageSize;
+        }
+        return params;
+      }
+      retrieveTutorials() {
+        const { searchTitle, page, pageSize } = this.state;
+        const params = this.getRequestParams(searchTitle, page, pageSize);
+        GestionkeyService.getAllPnl(params)
+          .then((response) => {
+            const { tutorials, totalPages } = response.data;
+            this.setState({
+              tutorials: tutorials,
+              count: totalPages,
+            });
+            console.log(response.data);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+         
+      }
+    
+    
+      handlePageChange(event, value) {
+        this.setState(
+          {
+            page: value,
+          },
+          () => {
+            this.retrieveTutorials();
+          }
+        );
+      }
+      handlePageSizeChange(event) {
+        this.setState(
+          {
+            pageSize: event.target.value,
+            page: 1
+          },
+          () => {
+            this.retrieveTutorials();
+          }
+        );
+      }
+    
+    
+    
+      handleSubmit = e => {
+        e.preventDefault();
+        this.setState({
+          message: "",
+          successful: false,
+          loading: true,
+        });
+        
+        this.form.validateAll();
+    
+        if (this.checkBtn.context._errors.length === 0) {
+          GestionkeyService.calculpnl( this.state.searchTitle).then(() => {
+            },
+            error => {
+              const resMessage =
+                (error.response &&
+                  error.response.data &&
+    error.response.data.message) ||
+                error.message ||
+                error.toString();
+    
+              this.setState({
+                loading: false,
+                message: resMessage
+              });
+            }
+          );
+        } else {
           this.setState({
-            loading: false,
-            message: resMessage
+            loading: false
           });
         }
-      );
-    } else {
-      this.setState({
-        loading: false
-      });
-    }
-    window.location.reload();
-
-  }
-
-
-
-  render() {
+        window.location.reload();
     
+      }
+    
+  render() {
     const {
         searchTitle,
         tutorials,
@@ -192,9 +202,13 @@ error.response.data.message) ||
         count,
         pageSize,
       } = this.state;
-      return (
-
-
+   const handleChange = (e) => {
+        if(e.target.value){
+        this.props.history.push(`/pdffinal/${e.target.value}`);
+        window.location.reload(false)    
+        } 
+      }
+    return (
 
         <div>
         <Navbar/>
@@ -230,9 +244,7 @@ error.response.data.message) ||
                 }}>
            <div className="input-group-append">
              
-                 <button className='buttonAj' style={{marginLeft: "650px"}} onClick={this.calculpnl(this.state.periode)}>
-                Calculer
-              </button> 
+                
            
               </div>
               <CheckButton
@@ -252,7 +264,7 @@ error.response.data.message) ||
           </div>
       <br></br>   <br></br>
 
-       <h2 style={{color:"#778899"  }}>Resultat P&L par année</h2><br></br>
+       <h2 style={{color:"#778899"  }}>Resultat Regional par année</h2><br></br>
           <div >
            
             <div class="row">
@@ -268,7 +280,7 @@ error.response.data.message) ||
                       <th>resultat Exercice</th> 
                       <th>resultat Exploitation</th> 
                       <th>total Impot</th> 
-                
+                      <th>Rapport</th> 
                         </tr>
                     </thead>
 
@@ -371,7 +383,8 @@ error.response.data.message) ||
                   >
                     {tutorial.totalImpot}
                     </td>
-                   
+                    <td>    <h1><i class="fa fa-bar-chart" style={{color:"#EB9532"}} onClick={ () => this.viewPnl(tutorial.periode)}></i></h1> 
+</td>
                     </tr>    
                 )
                 )
@@ -423,4 +436,5 @@ error.response.data.message) ||
     }
   }
 
-export default withRouter(CalculPnl)
+export default Resultatregional;
+

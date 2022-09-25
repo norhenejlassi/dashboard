@@ -59,10 +59,21 @@ import Affichage from "./components/affichage";
 import Affichagereve from "./components/AffichageRevenue";
 import Graphreve from "./components/exportrevenu";
 import Resultatfinal from "./components/Resultatfinal";
+import Resultatregional from "./components/resultatregional";
+
 import pdffinal from "./components/pdffinal";
 
 import Pnl from "./components/Pnl";
 import chexp from "./components/chexp";
+import Graphregionalimpot from "./components/graphregionalimpot";
+import Graphregionalnett from "./components/graphregionalnett";
+import pdfregional from "./components/pdfregional";
+import importcledotation from "./components/importcledotation";
+import Graphchargetoutannee from "./components/graphtotalchargetoutanne";
+import GraphImpottoutannee from "./components/graphtotalimpottoutanne";
+import Graphnetttoutannee from "./components/graphtotalnettetoutannee";
+import Graphrevenutoutannee from "./components/graphtotalrevenuetoutannees";
+import GraphTotallpnl from "./components/graphpnltotal";
 
 
 class App extends Component {
@@ -159,14 +170,27 @@ class App extends Component {
             <ProtectedRoute path = "/importcle" component = {Importcle}/>
             <ProtectedRoute path = "/importreve" component = {importreve}/>
             <ProtectedRoute path = "/importchargexpo" component = {Importchargexp}/>
+            <ProtectedRoute path = "/importdotation" component = {importcledotation}/>
+
 
             <ProtectedRoute path = "/chargefinanciere" component = {ChargeFinancier}/>
 
             <ProtectedRoute path = "/impots" component = {Impots}/>
             <ProtectedRoute path = "/graph/:id" component = {Graph}/>
             <ProtectedRoute path = "/graphreve/:id" component = {Graphreve}/>
+            <ProtectedRoute path = "/graphregionalimpot/:id" component = {Graphregionalimpot}/>
+            <ProtectedRoute path = "/graphregionalnett/:id" component = {Graphregionalnett}/>
+            <ProtectedRoute path = "/graphtotalchargetoutanne" component = {Graphchargetoutannee}/>
+            <ProtectedRoute path = "/graphtotalimpottoutanne" component = {GraphImpottoutannee}/>
+            <ProtectedRoute path = "/graphtotalnetttoutanne" component = {Graphnetttoutannee}/>
+            <ProtectedRoute path = "/graphtotalrevenutoutanne" component = { Graphrevenutoutannee}/>
+            <ProtectedRoute path = "/graphtotalpnl" component = {GraphTotallpnl}/>
+
+
 
             <ProtectedRoute path = "/pdffinal/:id" component = {pdffinal}/>
+            <ProtectedRoute path = "/pdfregional/:id" component = {pdfregional}/>
+
 
             <ProtectedRoute path = "/upd-cle/:id" component = {UpdateCle}/>
             
@@ -184,6 +208,8 @@ class App extends Component {
 
             <ProtectedRoute path = "/UploadFiles/:id" component = { UploadFiles }/>
             <ProtectedRoute path = "/resultatfinal" component = { Resultatfinal }/>
+            <ProtectedRoute path = "/resultatregional" component = {Resultatregional }/>
+
 
 
           </Switch>

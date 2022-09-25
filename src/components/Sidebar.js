@@ -17,12 +17,12 @@ const Sidebar = () => {
                        <li class="nav-item mb-2">
                     <a class="nav-link text-secondary" href="#submenu3" data-toggle="collapse" data-target="#submenu3"><i  class="fas fa-tablet-alt font-weight-bold"></i><span className="ml-3"> Gestion des données▾</span></a>
                     <ul class="list-unstyled flex-column pl-3 collapse" id="submenu3" aria-expanded="false">
-
-                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="clees"> <i class="fas fa-tablet-alt font-weight-bold"></i> Key </a></li>
-                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="chargefinanciere"> <i class="fas fa-tablet-alt font-weight-bold"></i> Charge financiére </a></li>
+                    <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="chargefinanciere"> <i class="fas fa-tablet-alt font-weight-bold"></i> Charge financiére </a></li>
                        <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="impots"> <i class="fas fa-tablet-alt font-weight-bold"></i> Impots </a></li>
 
 
+                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="clees"> <i class="fas fa-tablet-alt font-weight-bold"></i> Key </a></li>
+                       
                     </ul>
                 </li>
 
@@ -34,12 +34,15 @@ const Sidebar = () => {
                 <li class="nav-item mb-2">
                     <a class="nav-link text-secondary" href="#submenu1" data-toggle="collapse" data-target="#submenu1"><i class="fas fa-file"></i><span className="ml-3"> Import▾</span></a>
                     <ul class="list-unstyled flex-column pl-3 collapse" id="submenu1" aria-expanded="false">
-                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/import"><i class="fas fa-file"></i> Expense </a></li>
-                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="importcle"> <i class="fas fa-file"></i> Key </a></li>
-                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="importreve"> <i class="fas fa-file"></i> Revenu </a></li>
+                    <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="importreve"> <i class="fas fa-file"></i> Revenu </a></li>
                        <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="Importchargexpo"> <i class="fas fa-file"></i> Charge exploitation </a></li>
 
 
+                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/import"><i class="fas fa-file"></i> Expense </a></li>
+                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="importcle"> <i class="fas fa-file"></i> Key </a></li>
+                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="importcle"> <i class="fas fa-file"></i> Cle Dotation </a></li>
+
+                       
                     </ul>
                 </li>
 
@@ -62,8 +65,8 @@ const Sidebar = () => {
                 <li class="nav-item mb-2">
                     <a class="nav-link text-secondary" href="#submenu2" data-toggle="collapse" data-target="#submenu2"><i class="far fa-file-word font-weight-bold"></i> <span className="ml-3"> Reports▾</span></a>
                     <ul class="list-unstyled flex-column pl-3 collapse" id="submenu2" aria-expanded="false">
-                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/Dashboard"><i class="fas fa-book-reader"></i> Data Report </a></li>
-                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/resultatfinal"> <i class="fas fa-book-medical"></i> File Report </a></li>
+                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/resultatfinal"><i class="fas fa-book-reader"></i> Dashboard Final </a></li>
+                       <li class="nav-item mb-2 "><a class="nav-link text-secondary" href="/resultatregional"> <i class="fas fa-book-medical"></i> Dashboard Regional</a></li>
                     </ul>
                 </li>
 

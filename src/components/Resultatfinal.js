@@ -88,7 +88,53 @@ import { Component } from 'react';
 
 
                 </div>
+                
                 </div>
+                <br></br>                          <br></br>
+      <br></br>
+
+      <br></br>
+
+        <a id="more"></a>
+        <hr/>
+        <h2 class="lead d-none d-sm-block" style={{ fontWeight:"bold",color:"#778899" ,marginLeft:"250px"}} > Document comptable </h2>
+        <div class="mb-3">
+            <div class="card-deck">
+                <div class="card card-inverse card-success text-center">
+                    <div class="card-body">
+                        <blockquote class="card-blockquote">
+                            <p>Les charges d'exploitation correspondent aux dépenses réalisées par TT qui peuvent être comptabilisées en charges.</p>
+                            <footer>Charge d'exploitatoion <cite title="Source Title">TT</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="card card-inverse card-danger text-center">
+                    <div class="card-body">
+                        <blockquote class="card-blockquote">
+                            <p>Les revenus sont le montant total des revenus générés par la vente de biens ou de services liés aux activités principales de TT.</p>
+                            <footer>Revenue <cite title="Source Title">TT</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="card card-inverse card-warning text-center">
+                    <div class="card-body">
+                        <blockquote class="card-blockquote">
+                            <p>les charges financières correspondent au coût des ressources d'emprunt obtenus auprès des différents créanciers bancaires et financiers..</p>
+                            <footer>Charge Financiére <cite title="Source Title">TT</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="card card-inverse card-info text-center">
+                    <div class="card-body">
+                        <blockquote class="card-blockquote">
+                            <p>L’impôt est un versement obligatoire et sans contrepartie aux administrations publiques. L’impôt sert à financer les dépenses publiques et peut constituer un moyen de régulation de l’activité économique..</p>
+                            <footer>Impot <cite title="Source Title">TT</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
                 </div></div></div></div>   
                 
 

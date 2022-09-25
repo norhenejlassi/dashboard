@@ -31,17 +31,22 @@ class Chexp extends Component {
                         {
              
              this.state.charge.map((tutorial) => (
-                                <tr>
-                                <td
+                                <tr
+                               
                                   
                                   onClick={() => this.setActiveTutorial(tutorial)}
                                  
                                 >
-                                  {tutorial.label} ...................................  {tutorial.expense}Dt
+                                    < div style={{display:"flex"}} >
+                                        <div  class="col-lg-7 "> <label >  {tutorial.label}  </label> </div>
+                                        <div  class="col-lg-7 "><p  >   {tutorial.expense} Dt</p>  </div>
+                            </div> 
+                           
                                  
               
-                                  </td>
                                   </tr>
+
+                                  
                                   )
                                   )
                                   }

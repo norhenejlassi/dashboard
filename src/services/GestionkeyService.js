@@ -94,6 +94,11 @@ calculreve(periode){
 
 
 }
+calculrtotalreve(periode){
+  return axios.post(API_URL+"totalrevenue",{periode});
+
+
+}
 
 
 //getChargeExp(periode) {
