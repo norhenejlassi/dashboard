@@ -8,7 +8,7 @@ import Sidebar from './Sidebar'
     constructor(props) {
       super(props);
       this.selectFile = this.selectFile.bind(this);
-      this.uploadcle = this.uploadchargexp.bind(this);
+      this.uploadchargexp = this.uploadchargexp.bind(this);
 
   
       this.state = {

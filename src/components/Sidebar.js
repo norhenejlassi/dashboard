@@ -10,7 +10,7 @@ const Sidebar = () => {
             <ul class="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 " style={{backgroundColor:"#e9ecef",margin :"-75%",width:"300px",height:"800px"}}>
                 <li class="nav-item mb-2 mt-3"><a class="nav-link text-secondary" href="/admin"><h5>Dashboard Admin</h5></a></li>
                 <li class="nav-item mb-2 "><a class="nav-link text-secondary" href='/employees'><i class="fas fa-user font-weight-bold"></i> <span className="ml-3">Utilisateur</span></a></li>
-               
+
                  
                     
 
